@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=304 lang=typescript
  *
  * [304] 二维区域和检索 - 矩阵不可变
+ * 该题未通过提交
  */
 
 // @lc code=start
@@ -18,7 +19,6 @@ class NumMatrix {
         }
 
         for (let j = 1; j < matrix.length; j++) {
-            debugger
             this.dp[0][j] = this.dp[0][j-1] + matrix[0][j];
         }
 
@@ -32,7 +32,6 @@ class NumMatrix {
     }
 
     sumRegion(row1: number, col1: number, row2: number, col2: number): number {
-        console.log(this.dp);
         return this.dp[row2][col2] - this.dp[row2][col1] - this[row1][col2] + this.dp[row1][col1];
     }
 }

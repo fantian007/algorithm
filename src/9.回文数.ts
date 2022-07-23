@@ -23,6 +23,5 @@ function isPalindrome(x: number): boolean {
   return true;
 };
 
-isPalindrome(12)
 // @lc code=end
 
