@@ -1,8 +1,9 @@
-const arr = [1, 4, 2, 3, 5];
+const arr = [6, 1, 4, 2, 3, 5];
 
 /**
  * 
  * @see 动态图片演示 https://mmbiz.qpic.cn/mmbiz_gif/D67peceibeISwc3aGibUlvZ0XqVnbWtBRiaiatKZU4exjwcluduiclJOdZB0oZQicCrpIEaSJJg8iaia58viauSK3nhofqA/640?wx_fmt=gif&wxfrom=5&wx_lazy=1
+ * 和打扑克牌时排列的动作相同
  */
 const sort = (arr: number[]) => {
   const len = arr.length;
