@@ -14,7 +14,7 @@ const sort = (arr: number[]) => {
 
     // 从小到大排序
     // 从已经排序好的数组里面，从后往前取数，取出来的数 和 未排序的 current 比较
-    // 如果发现 取出的数 大于 current，那么所有排序好的数向后移动一位，将当前位置预留给 current 插入
+    // 如果发现 取出的数 大于 current，那么大于 current 的部分的数均向后移动一位，将当前位置预留给 current 插入
     while (prevIndex >= 0 && arr[prevIndex] > current) {
       // 向后移动一位, prevIndex 位置预留给 current
       arr[prevIndex + 1] = arr[prevIndex];
