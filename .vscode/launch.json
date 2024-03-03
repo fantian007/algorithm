@@ -16,7 +16,6 @@
         "${relativeFile}"
       ],
       "cwd": "${workspaceFolder}",
-      "protocol": "inspector",
       "outFiles": [
         "${workspaceFolder}/**/*.js"
       ]
