@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=206 lang=typescript
+ * @lc app=leetcode.cn id=24 lang=typescript
  *
- * [206] 反转链表
+ * [24] 两两交换链表中的节点
  */
 
 // @lc code=start
@@ -26,17 +26,24 @@ class ListNode {
   }
 }
 
-function reverseList(head: ListNode | null): ListNode | null {
-  if (head === null || head.next === null) {
-    return head;
+function swapPairs(head: ListNode | null): ListNode | null {
+  const node = new ListNode(0, head);
+  let cur = node;
+
+  while (cur && cur.next && cur.next.next) {
+    let first = cur.next;
+    let second = first.next;
+    let third = second.next;
+
+    cur.next = second;
+    second.next = first;
+    first.next = third;
+
+    cur = first;
   }
 
-  const last = reverseList(head.next);
-  head.next.next = head;
-  head.next = null;
-
-  return last;
-};
+  return node.next;
+}
 // @lc code=end
 
 const a = new ListNode(1);
@@ -48,8 +55,8 @@ a.next = b;
 b.next = c;
 c.next = d;
 
-const r = reverseList(a);
+const r = swapPairs(a);
 
 console.log(JSON.stringify(r));
 
-export {};
+export {}

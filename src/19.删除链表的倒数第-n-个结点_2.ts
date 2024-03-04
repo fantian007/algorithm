@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode.cn id=206 lang=typescript
- *
- * [206] 反转链表
- */
-
-// @lc code=start
 /**
  * Definition for singly-linked list.
  * class ListNode {
@@ -26,18 +19,39 @@ class ListNode {
   }
 }
 
-function reverseList(head: ListNode | null): ListNode | null {
-  if (head === null || head.next === null) {
-    return head;
+function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
+  if (head === null || (head.next === null && n === 1)) {
+    return null;
   }
 
-  const last = reverseList(head.next);
-  head.next.next = head;
-  head.next = null;
+  let slow = head;
+  let fast = head;
 
-  return last;
-};
-// @lc code=end
+  for (let i = 1; i <= n; i++) {
+    if (fast === null) {
+      return head;
+    }
+
+    fast = fast.next;
+  }
+
+  if (fast === null) {
+    return head.next;
+  }
+
+  while (fast) {
+    if (fast.next) {
+      fast = fast.next;
+      slow = slow.next;
+    } else {
+      slow.next = slow.next?.next;
+      break;
+    }
+  }
+
+   return head;
+}
+
 
 const a = new ListNode(1);
 const b = new ListNode(2);
@@ -48,7 +62,7 @@ a.next = b;
 b.next = c;
 c.next = d;
 
-const r = reverseList(a);
+const r = removeNthFromEnd(a, 0);
 
 console.log(JSON.stringify(r));
 
