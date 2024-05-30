@@ -6,47 +6,36 @@
 
 // @lc code=start
 class MyQueue {
-    private stack1 = [];
-    private stack2 = [];
+  private stack1 = [];
+  private stack2 = [];
 
-    constructor() {}
+  constructor() {}
 
-    push(x: number): void {
-        this.stack1.push(x);
+  push(x: number): void {
+    this.stack1.push(x);
+  }
+
+  pop(): number {
+    while (this.stack1.length) {
+      this.stack2.push(this.stack1.pop());
     }
 
-    pop(): number {
-        while (this.stack1.length) {
-            this.stack2.push(this.stack1.pop());
-        }
+    const v = this.stack2.pop();
 
-        const v = this.stack2.pop();
-
-        while (this.stack2.length) {
-            this.stack1.push(this.stack2.pop());
-        }
-
-        return v;
+    while (this.stack2.length) {
+      this.stack1.push(this.stack2.pop());
     }
 
-    peek(): number {
-        while (this.stack1.length) {
-            this.stack2.push(this.stack1.pop());
-        }
+    return v;
+  }
 
-        const v = this.stack2.pop();
-        this.stack2.push(v);
+  peek(): number {
+    return this.stack1[0];
+  }
 
-        while (this.stack2.length) {
-            this.stack1.push(this.stack2.pop());
-        }
-
-        return v;
-    }
-
-    empty(): boolean {
-        return this.stack1.length > 0 ? false: true;
-    }
+  empty(): boolean {
+    return this.stack1.length > 0 ? false : true;
+  }
 }
 
 /**
@@ -58,4 +47,3 @@ class MyQueue {
  * var param_4 = obj.empty()
  */
 // @lc code=end
-
