@@ -28,6 +28,7 @@ function maxDepth(root: TreeNode | null): number {
 
   const traverse = (node: TreeNode) => {
     if (node === null) {
+      // 到达叶子节点时，更新 res
       res = Math.max(res, deepth);
       return res;
     }
