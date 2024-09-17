@@ -37,4 +37,5 @@ function permute(nums: number[]): number[][] {
   return res;
 };
 // @lc code=end
+export {}
 

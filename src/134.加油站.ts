@@ -10,6 +10,7 @@ function canCompleteCircuit(gas: number[], cost: number[]): number {
     curSum += gas[i] - cost[i];
     sum += gas[i] - cost[i];
 
+    // 断油了，将 i + 1 处作为起点重新计算
     if (curSum < 0) {
       start = i + 1;
       curSum = 0;
