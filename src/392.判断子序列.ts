@@ -1,3 +1,4 @@
+// t 中找 s
 function isSubsequence(s: string, t: string): boolean {
   // 边界
   if (s === '') {
