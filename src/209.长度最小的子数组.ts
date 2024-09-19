@@ -1,7 +1,8 @@
+// 滑动窗口
 function minSubArrayLen(target: number, nums: number[]): number {
   let left = 0;
   let right = 0;
-  let len = nums.length + 1;
+  let len = Infinity; // 或者 nums.length + 1，设置一个不可能的数值即可
   let sum = 0;
 
   while (right < nums.length) {
@@ -18,8 +19,11 @@ function minSubArrayLen(target: number, nums: number[]): number {
     right++;
   }
 
-  return len === nums.length + 1 ? 0 : len;
+  return len === Infinity ? 0 : len;
 }
 
-const r = minSubArrayLen(7, [2, 3, 1, 2, 4, 3]);
+// const r = minSubArrayLen(7, [2, 3, 1, 2, 4, 3]);
+const r = minSubArrayLen(15, [1, 2, 3, 4, 5]);
 console.log(r);
+
+export { };

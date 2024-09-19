@@ -1,38 +1,40 @@
 function threeSum(nums: number[]): number[][] {
-  const ret: number[][] = [];
-
+  // 排序，方便 去重 + 剪枝
   nums.sort((a, b) => a - b);
-  const len = nums.length;
 
-  let left = 0;
-  let right = len - 1;
+  const r: number[][] = [];
 
-  for (let i = 0; i < len; i++) {
+  for (let i = 0; i < nums.length; i++) {
+    // 剪枝
     if (nums[i] > 0) {
-      return ret;
+      return r;
     }
 
+    // 去重
     if (i > 0 && nums[i] === nums[i - 1]) {
       continue;
     }
 
-    left = i + 1;
-    right = len - 1;
+    let left = i + 1;
+    let right = nums.length - 1;
 
     while (left < right) {
       const sum = nums[i] + nums[left] + nums[right];
 
       if (sum === 0) {
-        ret.push([nums[i], nums[left], nums[right]]);
+        r.push([nums[i], nums[left], nums[right]]);
 
         left++;
         right--;
 
-        while (nums[right] === nums[right + 1]) {
-          right--;
-        }
+        // 去重
         while (nums[left] === nums[left - 1]) {
           left++;
+        }
+
+        // 去重
+        while (nums[right] === nums[right + 1]) {
+          right--;
         }
       } else if (sum < 0) {
         left++;
@@ -40,8 +42,9 @@ function threeSum(nums: number[]): number[][] {
         right--;
       }
     }
-  }
-  return ret;
+  };
+
+  return r;
 }
 
 // const r = threeSum([-1, 0, 1, 2, -1, -4]);
