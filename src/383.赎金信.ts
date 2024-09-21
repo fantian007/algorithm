@@ -23,3 +23,5 @@ function canConstruct(ransomNote: string, magazine: string): boolean {
 }
 
 console.log(canConstruct("aa", "ab"));
+
+export {};

@@ -1,6 +1,4 @@
 function isHappy(n: number): boolean {
-  const m = new Map<number, number>();
-
   // 求和方法
   const getSum = (n: number) => {
     let sum = 0;
@@ -12,6 +10,9 @@ function isHappy(n: number): boolean {
 
     return sum;
   };
+
+  // 记录出现过的数值
+  const m = new Map<number, number>();
 
   while (!m.has(n)) {
     m.set(n, 1);
