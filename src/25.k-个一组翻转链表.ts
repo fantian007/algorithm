@@ -1,41 +1,25 @@
-/*
- * @lc app=leetcode.cn id=25 lang=typescript
- *
- * [25] K 个一组翻转链表
- */
-
-// @lc code=start
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     val: number
- *     next: ListNode | null
- *     constructor(val?: number, next?: ListNode | null) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.next = (next===undefined ? null : next)
- *     }
- * }
- */
+import { ListNode } from './ListNode';
 
 function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
   if (head === null) {
     return null;
   }
 
-  // 反转区间
+  // 反转区间 [a, b)，头结点是 b-1
   const reverse = (a: ListNode, b: ListNode) => {
     let pre = null;
     let cur = a;
-    let nxt = a;
+    let next = a;
 
     while (cur !== b) {
-      nxt = cur.next;
+      next = cur.next;
       cur.next = pre;
       // 指针前进
       pre = cur;
-      cur = nxt;
+      cur = next;
     }
 
+    // prev= cur 之后，pre 就是新链表头节点，返回 pre
     return pre;
   }
 
@@ -44,7 +28,8 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
   // 区间结束节点
   let b = head;
 
-  for(let i = 0; i < k; i++) {
+  // b 移动 k 个位置，如果不够 k 个位置，直接返回 head，不反转
+  for (let i = 0; i < k; i++) {
     if (b === null) {
       return head;
     } else {
@@ -52,12 +37,28 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
     }
   };
 
-  // 区间 [a, b)
+  // 反转区间 [a, b)，返回新链表头节点
   const newHead = reverse(a, b);
-
+  // [a,b) 反转之后，a 变为尾节点，a.next = 下一组的头结点
   a.next = reverseKGroup(b, k);
 
+  // 返回每段反转之后的头节点
   return newHead;
 };
-// @lc code=end
 
+
+const a1 = new ListNode(1);
+const a2 = new ListNode(2);
+const a3 = new ListNode(3);
+const a4 = new ListNode(4);
+const a5 = new ListNode(5);
+
+a1.next = a2;
+a2.next = a3;
+a3.next = a4;
+a4.next = a5;
+
+const r = reverseKGroup(a1, 3);
+console.log(JSON.stringify(r));
+
+export { };
