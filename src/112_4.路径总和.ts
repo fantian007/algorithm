@@ -3,7 +3,7 @@ import { createTree, TreeNode } from "./BinaryTree";
 // [当前节点，根节点到当前节点的路径和]
 type Item = [TreeNode, number];
 
-// 迭代
+// 层序迭代
 function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
   if (!root) {
     return false;
