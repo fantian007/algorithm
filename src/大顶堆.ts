@@ -58,7 +58,7 @@ class Heap {
   }
 }
 
-const h = new Heap(10);
+const h = new Heap();
 h.push(1);
 h.push(4);
 h.push(3);

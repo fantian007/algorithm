@@ -7,10 +7,9 @@ function isValidBST(root: TreeNode | null): boolean {
     return true;
   }
 
-
   const left = isValidBST(root.left);
 
-  // // 中间节点要大于左子树所有节点值，所以要用中序遍历
+  // 中间节点要大于左子树所有节点值，所以要用中序遍历
   if (max >= root.val) {
     return false;
   }

@@ -27,6 +27,7 @@ function rightSideView(root: TreeNode | null): number[] {
     r.push(curLevel);
   }
 
+  // return r.map(m => m.at(-1));
   return r.flatMap((f) => f.slice(-1));
 }
 
