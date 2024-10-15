@@ -22,6 +22,8 @@ function combinationSum(candidates: number[], target: number): number[][] {
       path.push(candidates[i]);
       total += candidates[i];
 
+      // 防止重复结果，使用 start
+      // 元素支持重复取，传 i; 不支持重复取，传 i + 1
       backtrack(path, i, total);
 
       path.pop();
