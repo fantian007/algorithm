@@ -19,7 +19,6 @@ function combine(n: number, k: number): number[][] {
      */
 
     // 循环实现了宽度遍历
-    const l = path.length;
     for (let i = startIndex; i < n; i++) {
       path.push(arr[i]);
       //   递归实现了深度遍历
@@ -37,5 +36,3 @@ const r = combine(4, 2);
 console.log(r);
 
 export {};
-
-[1, 2, 3, 4];

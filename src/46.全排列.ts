@@ -9,7 +9,7 @@ function permute(nums: number[]): number[][] {
   const res: number[][] = new Array(0);
   const used: boolean[] = new Array<boolean>(nums.length).fill(false);
 
-  const p = (nums: number[], track: number[], used: boolean[]) => {
+  const p = (track: number[], used: boolean[]) => {
     if (track.length === nums.length) {
       res.push(track.slice());
       return;
@@ -25,16 +25,18 @@ function permute(nums: number[]): number[][] {
       track.push(n);
       used[i] = true
 
-      p(nums, track, used);
+      p(track, used);
 
       track.pop();
       used[i] = false;
     }
   }
 
-  p(nums, [], used);
+  p([], used);
 
   return res;
 };
 // @lc code=end
 
+
+export {}
