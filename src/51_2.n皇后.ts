@@ -12,20 +12,20 @@ function solveNQueens(n: number): string[][] {
       if (row[col] === "Q") return false;
     }
 
-    let x = col;
-    let y = row;
+    let x = row;
+    let y = col;
 
     // 检查 45度角
-    while (x < n && y >= 0) {
-      if (board[y--][x++] === "Q") return false;
+    while (y < n && x >= 0) {
+      if (board[x--][y++] === "Q") return false;
     }
 
-    x = col;
-    y = row;
+    y = col;
+    x = row;
 
     // 检查 135度角
-    while (x >= 0 && y >= 0) {
-      if (board[y--][x--] === "Q") return false;
+    while (y >= 0 && x >= 0) {
+      if (board[x--][y--] === "Q") return false;
     }
 
     // 225度角、315度角 不用检查，因为还没有遍历到，没有 Q 存在
