@@ -6,12 +6,14 @@ import { ListNode, createLinkList } from './ListNode';
  * 2. 对左右2个链表排序合并
  */
 function sortList(head: ListNode | null): ListNode | null {
-  if (head === null || head.next === null) {
+  // !head 返回 null
+  // !head.next 返回 head
+  if (!head || !head.next) {
+    // 合并在一起，不要写成 return null
     return head;
   }
 
-  let slow = head;
-  let fast = head;
+  let slow = head, fast = head;
   while (fast.next && fast.next.next) {
     slow = slow.next;
     fast = fast.next.next;
@@ -20,25 +22,30 @@ function sortList(head: ListNode | null): ListNode | null {
   fast = slow.next;
   slow.next = null;
 
-  let left = sortList(head);
-  let right = sortList(fast);
+  const left = sortList(head);
+  const right = sortList(fast);
 
-  const h = new ListNode();
+  // 先递归，后排序，所以回溯过程中，上面的 left, right 是上次的排序合并结果，本次还未排序合并，需要排序+合并
+
+  // 合并2个有序链表
+  const h = new ListNode(-1);
   let p = h;
+  let p1 = left;
+  let p2 = right;
 
-  while (left && right) {
-    if (left.val <= right.val) {
-      p.next = left;
-      left = left.next;
+  while (p1 && p2) {
+    if (p1.val < p2.val) {
+      p.next = p1;
+      p1 = p1.next;
     } else {
-      p.next = right;
-      right = right.next;
+      p.next = p2;
+      p2 = p2.next;
     }
 
     p = p.next;
   }
 
-  p.next = left ? left : right;
+  p.next = p1 ? p1 : p2;
 
   return h.next;
 };

@@ -1,21 +1,4 @@
-/*
- * @lc app=leetcode.cn id=23 lang=typescript
- *
- * [23] 合并K个升序链表
- */
-
-// @lc code=start
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     val: number
- *     next: ListNode | null
- *     constructor(val?: number, next?: ListNode | null) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.next = (next===undefined ? null : next)
- *     }
- * }
- */
+import { ListNode, createLinkList } from './ListNode';
 
 function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   if (lists.length === 0) {
@@ -60,5 +43,8 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   // 去掉虚拟头节点
   return s.next;
 };
-// @lc code=end
 
+const linkList = [createLinkList([1, 4, 5]), createLinkList([1, 3, 4]), createLinkList([2, 6])];
+const r = mergeKLists(linkList);
+
+console.log(r);
