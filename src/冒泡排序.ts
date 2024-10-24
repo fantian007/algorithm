@@ -17,3 +17,5 @@ const sort = (arr: number[]) => {
 sort(arr);
 
 console.log(arr);
+
+export {}

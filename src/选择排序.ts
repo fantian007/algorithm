@@ -5,7 +5,6 @@ const sort = (arr: number[]) => {
     let minIndex = i;
 
     for (let j = i + 1; j < arr.length; j++) {
-
       const min = arr[minIndex];
       const cur = arr[j];
 
@@ -25,3 +24,5 @@ const sort = (arr: number[]) => {
 sort(arr);
 
 console.log(arr);
+
+export {}

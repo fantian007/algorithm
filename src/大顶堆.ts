@@ -1,6 +1,6 @@
 /**
  * 大顶堆
- * @see https://segmentfault.com/a/1190000042515702
+ * @see https://segmentfault.com/a/1190000042515702（讲不好，看图吧）
  * @see https://github.com/datastructures-js/priority-queue/blob/v5/README.md
  * 小顶堆改判断条件 大于为小于即可
  * 堆尾入栈，堆头出栈
