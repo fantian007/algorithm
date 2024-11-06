@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode.cn id=198 lang=typescript
- *
- * [198] 打家劫舍
- */
-
-// @lc code=start
 /**
  * 直接递归有超时问题
  * 
@@ -21,5 +14,5 @@ function rob(nums: number[]): number {
 
   return dp[0];
 };
-// @lc code=end
 
+export {}

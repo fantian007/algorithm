@@ -13,7 +13,7 @@ function coinChange(coins: number[], amount: number): number {
 }
 
 // const r = coinChange([1, 2, 5], 11);
-const r = coinChange([2], 3);
+const r = coinChange([2, 1], 3);
 console.log(r);
 
 export {};

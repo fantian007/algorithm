@@ -1,12 +1,3 @@
-/*
- * @lc app=leetcode.cn id=198 lang=typescript
- *
- * [198] 打家劫舍
- */
-
-// @lc code=start
-/**
- */
 function rob(nums: number[]): number {
   const len = nums.length;
 
@@ -23,5 +14,5 @@ function rob(nums: number[]): number {
 
   return dp_i;
 };
-// @lc code=end
 
+export {}
