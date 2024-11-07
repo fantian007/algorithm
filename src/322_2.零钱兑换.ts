@@ -33,6 +33,7 @@ function coinChange(coins: number[], amount: number): number {
     // 记录到备忘录
     memo[n] = r;
 
+    // 中间 continue，r 会等于 Infinity
     return r === Infinity ? -1 : r;
   }
 

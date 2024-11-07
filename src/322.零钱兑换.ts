@@ -1,11 +1,14 @@
+// 动规
 function coinChange(coins: number[], amount: number): number {
   const dp: number[] = new Array(amount + 1).fill(Infinity);
 
   dp[0] = 0;
 
-  for (let i = 0; i < coins.length; i++) {
-    for (let j = coins[i]; j <= amount; j++) {
-      dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
+  for (const coin of coins) {
+    for (let j = coin; j <= amount; j++) {
+      if (j - coin < 0) continue;
+
+      dp[j] = Math.min(dp[j], dp[j - coin] + 1);
     }
   }
 
@@ -16,4 +19,4 @@ function coinChange(coins: number[], amount: number): number {
 const r = coinChange([2, 1], 3);
 console.log(r);
 
-export {};
+export { };
