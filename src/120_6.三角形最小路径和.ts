@@ -1,15 +1,12 @@
 // https://leetcode.cn/problems/triangle/solutions/329394/di-gui-ji-yi-hua-dp-bi-xu-miao-dong-by-sweetiee/?envType=study-plan-v2&envId=top-interview-150
 // 动规
+// 不同点：倒序遍历三角形行
+// 题目要求是路径和最小，举的例子也是自顶向下，但是自底向上也一样能求出最小路径和（非递归），只要从底部向上走，路径和最小就可以了
+// 自底向上好处：求某点的 (i,j) 路径和时，下一行的 (i+1, j), (i+1, j+1) 一定存在，每行的第一个节点、最后一个节点 不用再单独判断&处理
 function minimumTotal(triangle: number[][]): number {
   // 行数
-  // 不同点：倒序遍历三角形行
-  // 题目要求是路径和最小，举的例子也是自顶向下，但是自底向上也一样能求出最小路径和（非递归），只要从底部向上走，路径和最小就可以了
-  // 自底向上好处：求某点的 (i,j) 路径和时，下一行的 (i+1, j), (i+1, j+1) 一定存在，每行的第一个节点、最后一个节点 不用再单独判断&处理
   const n = triangle.length;
 
-  // 计算下一行的值时，dp 还保持上一行的值
-  // 计算 dp[j] 时，我们需要 Math.min(dp[j], dp[j-1])。从后往前计算是为了保证 dp[j-1] 的值取的上一行的值，不能被本次计算覆盖
-  // 总结：后面元素的新值依赖前面元素的旧值，需要从后往前计算
   const dp: number[] = new Array(n + 1).fill(0);
 
   // 从最后一一行（底部）开始遍历
