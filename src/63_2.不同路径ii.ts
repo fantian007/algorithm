@@ -1,10 +1,12 @@
 /**
  * @see https://programmercarl.com/0063.%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84II.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE
+ * 从 a 到 b 有几条路径，相当于 从 b 到 a 有几条路径
  */
 function uniquePathsWithObstacles(obstacleGrid: number[][]): number {
   const m = obstacleGrid.length;
   const n = obstacleGrid[0].length;
 
+  // dp[i][j] ：表示从（0 ，0）出发，到(i, j) 有dp[i][j]条不同的路径
   const dp: number[][] = new Array(m).fill(0).map((_) => new Array(n).fill(0));
 
   // obstacleGrid[i][0] 遇到一次 false, 那么就停止后面的循环
