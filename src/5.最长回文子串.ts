@@ -1,10 +1,4 @@
-/*
- * @lc app=leetcode.cn id=5 lang=typescript
- *
- * [5] 最长回文子串
- */
-
-// @lc code=start
+// 滑动窗口
 function longestPalindrome(s: string): string {
   if (s.length <= 1) {
     return s;
@@ -12,28 +6,39 @@ function longestPalindrome(s: string): string {
 
   const n = s.length;
 
-  const p = (left: number, right: number) => {
-    while (left >= 0 && right < n && s[left] === s[right]) {
+  let left = 0;
+  let right = 0;
+
+  // 窗口
+  let d = [-1, -1];
+  // 窗口最大宽度
+  let max = 0;
+
+  for (let i = 0; i < n; i++) {
+    left = right = i;
+
+    // 要考虑 s[i] 和旁边元素相同的情况
+    while (--left && s[left] === s[i]); // 不需要函数体
+    while (++right && s[right] === s[i]);
+
+    // 然后再比较两侧元素
+    while (left >= 0 && right <= n - 1 && s[left] === s[right]) {
       left--;
       right++;
     }
 
-    return s.substring(left + 1, right);
-  }
-
-  let ret = '';
-
-  for(let i = 0; i < n; i++) {
-    // 以 s[i] 为中心的最长回文串
-    const r1 = p(i, i);
-    // 以 s[i], s[i+1] 为中心的最长回文串(s[i] === s[i+1])
-    const r2 = p(i, i + 1);
-    
-    ret = ret.length > r1.length ? ret : r1;
-    ret = ret.length > r2.length ? ret : r2;
+    // 记录最大窗口
+    if (right - left > max) {
+      max = right - left;
+      d = [left + 1, right - 1];
+    }
   };
 
-  return ret;
+  return s.slice(d[0], d[1] + 1); // slice 截取区间 [left, right)，所以 right + 1
 };
-// @lc code=end
 
+const r = longestPalindrome('babad');
+// const r = longestPalindrome('cbbd');
+console.log(r);
+
+export { };
