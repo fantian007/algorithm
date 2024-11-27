@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode.cn id=123 lang=typescript
- *
- * [123] 买卖股票的最佳时机 III
- */
-
-// @lc code=start
 /**
  * 状态 -》做选择 -》新的状态
  * 
@@ -45,5 +38,3 @@ function maxProfit(prices: number[]): number {
 
   return dp[len-1][max_k][0];
 };
-// @lc code=end
-
