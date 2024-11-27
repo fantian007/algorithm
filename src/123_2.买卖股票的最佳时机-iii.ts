@@ -14,7 +14,7 @@ function maxProfit(prices: number[]): number {
   let dp_i20 = 0;
   let dp_i21 = -prices[0];
 
-  // 将三维数组 压缩为 几个单个变量 来表示（三维数组层级之间无依赖，用一层数组即可，或者用几个变量代表当前操作层）
+  // 将三维数组 压缩为 几个单个变量 来表示（三维数组，当前层只依赖上一层。用一层数组不断更新值即可，或者用几个变量代表当前操作层）
   for (let i = 0; i < len; i++) {
     dp_i11 = Math.max(dp_i11, 0 - prices[i]);
     dp_i21 = Math.max(dp_i21, dp_i10 - prices[i]);
