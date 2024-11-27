@@ -47,3 +47,5 @@ e.next = f;
 f.next = g;
 
 console.log(JSON.stringify(removeElements(a, 6)));
+
+export {}
