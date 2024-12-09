@@ -1,23 +1,5 @@
-/*
- * @lc app=leetcode.cn id=160 lang=typescript
- *
- * [160] 相交链表
- */
+import { ListNode } from './ListNode';
 
-// @lc code=start
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     val: number
- *     next: ListNode | null
- *     constructor(val?: number, next?: ListNode | null) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.next = (next===undefined ? null : next)
- *     }
- * }
- */
-
-// 为了保证2个指针同时到达相交节点，需要从相同位置开始后移指针
 function getIntersectionNode(headA: ListNode | null, headB: ListNode | null): ListNode | null {
   let p1 = headA;
   let p2 = headB;
@@ -58,5 +40,5 @@ function getIntersectionNode(headA: ListNode | null, headB: ListNode | null): Li
  
   return p1;
 };
-// @lc code=end
 
+export {};

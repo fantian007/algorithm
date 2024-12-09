@@ -104,12 +104,12 @@ export class Heap {
   }
 }
 
-// const arr = [3, 7, 16, 10, 21, 22, 23];
-// const h = new Heap(arr);
-// console.log(h.arr);
-// h.pop();
-// console.log(h.arr);
-// h.push(20);
-// console.log(h.arr);
+const arr = [3, 7, 16, 10, 21, 22, 23];
+const h = new Heap(arr);
+console.log(h.arr);
+h.pop();
+console.log(h.arr);
+h.push(20);
+console.log(h.arr);
 
 export { }

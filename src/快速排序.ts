@@ -8,7 +8,7 @@ const quickSort = (nums: number[]) => {
 
     const mid = nums[0];
 
-    for(let i = 1; i < nums.length; i++) {
+    for (let i = 1; i < nums.length; i++) {
       if (nums[i] < mid) {
         left.push(nums[i]);
       } else {
@@ -20,7 +20,8 @@ const quickSort = (nums: number[]) => {
   }
 }
 
-const arr = [5, 7, 2, 3, 8, 1];
+// const arr = [5, 7, 2, 3, 8, 1];
+const arr = [3, 2, 2, 1, 9, 1, 2, 10, 1, 5, 6, 4];
 const r = quickSort(arr);
 console.log(r);
 

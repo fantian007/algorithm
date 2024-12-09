@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode.cn id=27 lang=typescript
- *
- * [27] 移除元素
- */
-
-// @lc code=start
 function removeElement(nums: number[], val: number): number {
   const len = nums.length;
   let slow = 0;
@@ -22,5 +15,9 @@ function removeElement(nums: number[], val: number): number {
 
   return slow;
 };
-// @lc code=end
 
+const arr = [3, 2, 2, 3];
+const r = removeElement(arr, 3);
+console.log(r); // 2
+
+export { }
