@@ -1,20 +1,19 @@
 function removeDuplicates(nums: number[]): number {
-  if (nums.length <= 1) {
-    return 1;
-  }
+  const map = {};
 
   let slow = 0;
   let fast = 0;
 
   while (fast < nums.length) {
-    if (nums[fast] !== nums[slow]) {
-      slow++;
+    if (!map[nums[fast]] || map[nums[fast]] < 2) {
+      map[nums[fast]] = (map[nums[fast]] || 0) + 1;
 
       nums[slow] = nums[fast];
+      slow++;
     }
 
     fast++;
   }
 
-  return slow + 1;
+  return slow;
 };

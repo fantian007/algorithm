@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode.cn id=26 lang=typescript
- *
- * [26] 删除有序数组中的重复项
- */
-
-// @lc code=start
 function removeDuplicates(nums: number[]): number {
   if (nums.length <= 1) {
     return 1;
@@ -24,5 +17,3 @@ function removeDuplicates(nums: number[]): number {
 
   return target + 1;
 };
-// @lc code=end
-
