@@ -1,4 +1,4 @@
-// 股票就交易一次
+// 股票就交易一次(可能超时)
 function maxProfit(prices: number[]): number {
   let r = 0;
 

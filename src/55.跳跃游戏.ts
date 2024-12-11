@@ -12,7 +12,7 @@ function canJump(nums: number[]): boolean {
 
   // <= cover，只在 cover 范围内移动，超出 cover 说明接不上了
   for (let i = 0; i <= cover; i++) {
-    cover = Math.max(i + nums[i], cover);
+    cover = Math.max(cover, i + nums[i]);
 
     if (cover >= len - 1) return true;
   }
@@ -26,4 +26,4 @@ function canJump(nums: number[]): boolean {
 const r = canJump([2, 0, 0]);
 console.log(r);
 
-export {};
+export { };

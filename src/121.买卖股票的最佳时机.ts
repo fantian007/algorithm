@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode.cn id=121 lang=typescript
- *
- * [121] 买卖股票的最佳时机
- */
-
-// @lc code=start
 // 优化 dp 空间
 /**
  * 状态 -》做选择 -》新的状态
@@ -55,5 +48,5 @@ function maxProfit(prices: number[]): number {
    */
   return dp_i_0;
 };
-// @lc code=end
 
+export {}

@@ -1,52 +1,23 @@
-/*
- * @lc app=leetcode.cn id=121 lang=typescript
- *
- * [121] 买卖股票的最佳时机
- */
-
-// @lc code=start
+// 股票就交易一次
 function maxProfit(prices: number[]): number {
-  // 状态转移方程
+  // 当前 持有/不持有 股票的最大利润
+  const dp: number[][] = new Array(prices.length).fill(0).map((_) => []);
 
-  /**
-   * 解释：第 i 天 手里没有股票
-   * 1. 第 i-1 天手里就没有，然后啥也没干，第 i 天依然没有
-   * 2. 第 i-1 天手里有股票，卖了赚钱了，第 i 天手里就没有了
-   */
-  // dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i])
+  dp[0][0] = -prices[0];
+  dp[0][1] = 0;
 
-  /**
-   * 解释：第 i 天 手里有股票
-   * 1. 第 i-1 天手里就有股票，啥也没干，第 i 天手里依然有
-   * 2. 第 i-1 天手里没有股票，花钱买股票了，第 i 天手里就有了股票
-   */
-  // dp[i][1] = max(dp[i-1][1], dp[i-1][0] - prices[i])
-  // 因为 i-1 天手里没有股票，说明之前没做过交易，所以 i-1 天是利润为 0，简化
-  // dp[i][1] = max(dp[i-1][1], 0 - prices[i])
+  for (let i = 1; i < prices.length; i++) {
+    // 昨天就持有/今天买入
+    dp[i][0] = Math.max(dp[i - 1][0], -prices[i]); // 注意：不是 dp[i-1][1] - prices[i]，要求只能进行一次交易
+    // 昨天就不持有/今天卖出
+    dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] + prices[i]);
+  }
 
-  const len = prices.length;
-  const dp: number[][] = Array.from({ length: len }, () => new Array(2).fill(0));
+  return dp[prices.length - 1][1];
+}
 
-  for (let i = 0; i < len; i++) {
-    
-    // 边界情况
-    if (i - 1 === -1) {
-      dp[i][0] = 0;
-      // 花钱买了第一天的股票
-      dp[i][1] = -prices[i];
+const r = maxProfit([7, 1, 5, 3, 6, 4]);
 
-      continue;
-    }
+console.log(r);
 
-    dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1] + prices[i]);
-    dp[i][1] = Math.max(dp[i-1][1], 0 - prices[i]);
-  };
-
-  /**
-   * 我们一直在求最大值
-   * 所以最后一个手里无股票的情形下利润是最大的
-   */
-  return dp[len-1][0];
-};
-// @lc code=end
-
+export {};
