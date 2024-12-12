@@ -16,7 +16,7 @@ function jump(nums: number[]): number {
   // 按到达 nums[nums.length - 2] 算，即 倒数第2位
   for (let i = 0; i < len - 1; i++) {
     // 重点，取最远的覆盖范围
-    nextCover = Math.max(i + nums[i], nextCover);
+    nextCover = Math.max(nextCover, i + nums[i]);
 
     // 如果正巧到达了 nums[nums.length - 2]，那么 steps 还要 +1， 最后一步一定会到达末尾
     if (i === curCover) {
