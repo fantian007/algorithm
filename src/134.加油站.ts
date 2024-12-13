@@ -28,4 +28,4 @@ const r = canCompleteCircuit([10, 5, 2, 3, 5], [50, 2, 1, 10, 2]);
 
 console.log(r);
 
-export {};
+export { };

@@ -5,9 +5,9 @@
 function canCompleteCircuit(gas: number[], cost: number[]): number {
   // 到达下一个站点的油箱剩余油量
   let sum = 0;
-  // 最小油量
+  // 最小剩余油量
   let minSum = sum;
-  // 最小油量站点索引
+  // 起始点
   let start = 0;
 
   for (let i = 0; i < gas.length; i++) {
