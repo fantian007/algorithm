@@ -9,18 +9,20 @@ function trap(height: number[]): number {
     return 0;
   }
 
+  // 单调栈，从大到小，存放 height 中的更小元素
   const stack: number[] = [0];
+  // 总储水量
   let r = 0;
 
   for (let i = 1; i < len; i++) {
-    // 栈顶元素
+    // 栈顶元素下标
     let top = stack[stack.length - 1];
 
-    // 栈内元素 从大到小
+    // 更小元素入栈
     if (height[top] > height[i]) {
       stack.push(i);
     }
-    // 如果相邻的相同，取右侧元素高度
+    // 相邻的相同元素，取右侧元素高度
     else if (height[top] === height[i]) {
       stack.pop(); // 该句有没有都行，有了会减少计算量
       stack.push(i);
