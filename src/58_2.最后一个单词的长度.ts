@@ -21,11 +21,12 @@ function lengthOfLastWord(s: string): number {
     left--;
   }
 
-  // 截取
+  // 截取(left\right 有可能出现负数，但是 slice 截取之后是空串，不影响结果)
   return s.slice(left + 1, right + 1).length;
 };
 
-const r = lengthOfLastWord("Hello"); // 5
+const r = lengthOfLastWord(" "); // 0
+// const r = lengthOfLastWord("Hello"); // 5
 // const r = lengthOfLastWord("Hello World"); // 5
 // const r = lengthOfLastWord("   fly me   to   the moon  "); // 4
 // const r = lengthOfLastWord("luffy is still joyboy"); // 6
