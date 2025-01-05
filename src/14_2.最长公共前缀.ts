@@ -3,34 +3,32 @@ const longestCommonPrefix = function (strs) {
     return "";
   }
 
-  // 公共前缀的长度
-  let count = 0;
-  // 当前比较的索引
-  let pinPos = 0;
-  // 当前比较的字符
-  let pinStr = strs[0][0];
-  // 字符串个数
-  let len = strs.length
+  // 单词个数
+  let len = strs.length;
 
-  while (pinStr) {
-    pinStr = strs[0][count];
+  // 下次比较的索引 
+  let index = 0;
+  // 索引对应的字符
+  let char = strs[0][0];
+
+  while (char) {
+    char = strs[0][index];
 
     for (let i = 1; i < len; i++) {
-      pinPos = i;
 
-      if (pinStr !== strs[i][count]) {
-        pinStr = undefined;
+      if (char !== strs[i][index]) {
+        char = undefined;
         break;
       }
     }
 
-    count++;
+    index++;
   }
 
   // count 进行下一轮比较前，先加了1，所以最后要减 1
-  count = count - 1;
+  index--;
 
-  return strs[0].slice(0, count);
+  return strs[0].slice(0, index);
 };
 
 const r = longestCommonPrefix(["flower", "flow", "flight"]);

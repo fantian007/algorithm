@@ -1,5 +1,5 @@
 function longestCommonPrefix(strs: string[]): string {
-  // 只有一个元素，支持返回该元素
+  // 只有一个元素，直接返回该元素
   if (strs.length === 1) {
     return strs[0];
   }
@@ -25,10 +25,12 @@ function longestCommonPrefix(strs: string[]): string {
     };
 
     // 注意：遍历完毕了，如果中途未返回，那么所有元素相同
-    if (i === strs[0].length - 1) {
-      return strs[0];
-    }
+    // if (i === strs[0].length - 1) {
+    //   return strs[0];
+    // }
   };
+
+  return strs[0];
 };
 
 // const r = longestCommonPrefix(["flower", "flow", "flight"]);
