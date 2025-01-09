@@ -2,6 +2,11 @@
  * 模拟 Z 字形 排列
  */
 function convert(s: string, numRows: number): string {
+  // 行数 1，直接返回字符串
+  if (numRows === 1) {
+    return s;
+  }
+
   // 二维数组，内部一维数组不定长(定长会浪费空间)
   // 二维数组中的每行存储 Z 字形 的每行字符
   const arr = new Array(numRows).fill(0).map(_ => new Array());
@@ -32,7 +37,9 @@ function convert(s: string, numRows: number): string {
     // 边界：超出了行
     if (row === numRows) {
       // row 需要向上 2 行，回退之后不能小于 0
-      row = Math.max(row - 2, 0);
+      // row = Math.max(row - 2, 0);
+
+      row -= 2;
       // 下次向上遍历
       d = 0;
     }
@@ -40,7 +47,9 @@ function convert(s: string, numRows: number): string {
     // 边界：超出了行
     if (row < 0) {
       // row 需要向下 2 行，但是不能超出最大行索引
-      row = Math.min(row + 2, numRows - 1);
+      // row = Math.min(row + 2, numRows - 1);
+
+      row += 2;
       // 下次向下遍历
       d = 1;
     }
