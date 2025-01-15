@@ -1,5 +1,6 @@
 /**
  * 使用 KMP
+ * 时间复杂度 O(m + n)
  */
 function strStr(haystack: string, needle: string): number {
   /**
@@ -10,12 +11,14 @@ function strStr(haystack: string, needle: string): number {
     const next = [0];
     let j = 0;
 
+    // i 从 1 开始
     for (let i = 1; i < str.length; i++) {
+      // 跳位
       while (j > 0 && str[i] !== str[j]) {
-        // 跳位
         j = next[j - 1];
       }
 
+      // 进位
       if (str[i] === str[j]) {
         j++;
       }
@@ -28,16 +31,19 @@ function strStr(haystack: string, needle: string): number {
 
   const next = getNext(needle);
 
-  console.log('next', next);
+  // console.log('next', next);
 
   let j = 0;
+  // i 从 0 开始
   for (let i = 0; i < haystack.length; i++) {
+    // 跳位
     while (j > 0 && haystack[i] !== needle[j]) {
-      // 跳位
       j = next[j - 1];
     }
 
+    // 进位
     if (haystack[i] === needle[j]) {
+      // 取完全匹配时开始处的下标
       if (j === needle.length - 1) {
         return i - j;
       }
@@ -56,5 +62,5 @@ function strStr(haystack: string, needle: string): number {
 // console.log(strStr('mississippi', 'issip'));
 // console.log(strStr("aabaabaafa", "aabaaf"));
 // console.log(strStr("mississippi", "pi"));
-// console.log(strStr("aabaaabaaac", "aabaaac"));
-console.log(strStr("aba", "aba"));
+console.log(strStr("aabaaabaaac", "aabaaac"));
+// console.log(strStr("aba", "aba"));
