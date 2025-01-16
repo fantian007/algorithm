@@ -1,3 +1,4 @@
+// 动规
 function isSubsequence(s: string, t: string): boolean {
   // dp[i][j]: s 从 [0,i-1]，t 从 [0,j-1]，双方相同的子序列长度
   const dp: number[][] = new Array(s.length + 1).fill(0).map(_ => new Array(t.length + 1).fill(0));
