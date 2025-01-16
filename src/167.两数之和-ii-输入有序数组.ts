@@ -1,10 +1,4 @@
-/*
- * @lc app=leetcode.cn id=167 lang=typescript
- *
- * [167] 两数之和 II - 输入有序数组
- */
-
-// @lc code=start
+// 双指针（要利用数组已排序的特点）
 function twoSum(numbers: number[], target: number): number[] {
   const n = numbers.length;
   let left = 0;
@@ -23,5 +17,3 @@ function twoSum(numbers: number[], target: number): number[] {
   }
   return [-1, -1];
 };
-// @lc code=end
-
