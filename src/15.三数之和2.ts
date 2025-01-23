@@ -47,9 +47,18 @@ function threeSum(nums: number[]): number[][] {
   return r;
 }
 
+
+/**
+ * 几处去重的逻辑：
+ * 连续相同的数，一定要取第一个，例如：[-4, -1, -1, 0, 1, 2]
+ * 取第一个 -1：剩余2数组合 [[-1, 2], [0, 1]]
+ * 取第二个 -1: 剩余2数组合：[[0, 1]]，是第一个数的子集
+ * 取第一个数，能获取到所有组合；取后面的数，组合数减少，且子集组合是重复的，所以需要跳过
+ */
+
 // const r = threeSum([-1, 0, 1, 2, -1, -4]);
 const r = threeSum([-3, -3, 0, 1, 2, 3, 6]);
 
-console.log(r);
+console.log(JSON.stringify(r));
 
 export {};
