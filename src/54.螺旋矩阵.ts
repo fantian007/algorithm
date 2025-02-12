@@ -1,8 +1,5 @@
 // 模拟法
 function spiralOrder(matrix: number[][]): number[] {
-  // 顺时针收集元素
-  const ret = [];
-
   if (matrix.length === 0) {
     return [];
   }
@@ -20,73 +17,62 @@ function spiralOrder(matrix: number[][]): number[] {
   let x = 0;
   let y = 0;
 
+  const r = [matrix[x][y]];
+
   // 是否遍历完毕
-  const isDone = () => ret.length === m * n;
+  const isDone = () => r.length === m * n;
 
   while (!isDone()) {
     // 遍历上方行
-    while (y <= right) {
-      ret.push(matrix[x][y++]);
+    while (y < right) {
+      y++;
+      r.push(matrix[x][y]);
     }
-
-    if (isDone()) {
-      break;
-    }
-
-    // 多+1，减 -1
-    y--;
-    // 下一行
-    x++;
     // 上边界下移（去掉刚遍历的行）
     top++;
 
-    // 遍历右侧列
-    while (x <= bottom) {
-      ret.push(matrix[x++][y]);
-    }
-
     if (isDone()) {
       break;
     }
 
-    // 同上
-    x--;
-    y--;
+    // 遍历右侧列
+    while (x < bottom) {
+      x++;
+      r.push(matrix[x][y]);
+    }
     // 右边界左移
     right--;
 
-    // 遍历下方行
-    while (y >= left) {
-      ret.push(matrix[x][y--]);
-    }
-
     if (isDone()) {
       break;
     }
 
-    // 同上
-    y++;
-    x--;
+    // 遍历下方行
+    while (y > left) {
+      y--;
+      r.push(matrix[x][y]);
+    }
     // 下边界上移
     bottom--;
 
-    // 遍历左侧列
-    while (x >= top) {
-      ret.push(matrix[x--][y]);
-    }
-
     if (isDone()) {
       break;
     }
 
-    // 同上
-    x++;
-    y++;
+    // 遍历左侧列
+    while (x > top) {
+      x--;
+      r.push(matrix[x][y]);
+    }
     // 左边界右移
     left++;
+
+    if (isDone()) {
+      break;
+    }
   }
 
-  return ret;
+  return r;
 }
 
 console.log(
@@ -97,4 +83,4 @@ console.log(
   ])
 );
 
-export {}
+export { }
