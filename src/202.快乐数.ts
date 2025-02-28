@@ -1,3 +1,4 @@
+// 思路：将出现过的数放入 map, 当后续出现的数在 map 内，说明死循环了，返回 false. 不死循环就一直计算。
 function isHappy(n: number): boolean {
   // 求和方法
   const getSum = (n: number) => {
@@ -16,13 +17,12 @@ function isHappy(n: number): boolean {
 
   while (!m.has(n)) {
     m.set(n, 1);
-    const sum = getSum(n);
 
-    if (sum === 1) {
+    n = getSum(n);
+
+    if (n === 1) {
       return true;
     }
-
-    n = sum;
   }
 
   return false;

@@ -5,40 +5,31 @@ function isSymmetric(root: TreeNode | null): boolean {
     return true;
   }
 
-  // 使用双端队列，看队列中元素是否左右对称
-  const queue: TreeNode[] = [root.left, root.right];
+  // 递归法
+  const compare = (node1: TreeNode | null, node2: TreeNode | null): boolean => {
 
-  while (queue.length) {
-    const a = queue.shift();
-    const b = queue.pop();
-
-    if (!a && !b) {
-      continue;
-    }
-
-    if (!a || !b) {
+    // 边界条件
+    if (!node1 && !node2) {
+      return true;
+    } else if (!node1 || !node2) {
+      return false;
+    } else if (node1.val !== node2.val) {
       return false;
     }
-
-    if (a.val !== b.val) {
-      return false;
+    // 单层递归逻辑
+    else {
+      return compare(node1.left, node2.right) && compare(node1.right, node2.left);
     }
-
-    queue.unshift(a.right);
-    queue.unshift(a.left);
-    queue.push(b.left);
-    queue.push(b.right);
   }
 
-  return true;
+  return compare(root.left, root.right);
 }
 
 const tree = createTree([1, 2, 2, 3, 4, 4, 3]);
 // const tree = createTree([1, 2, 2, null, 3, null, 3]);
 // const tree = createTree([1, 0]);
-// const tree = createTree([1, 2, 3]);
 
 const r = isSymmetric(tree);
 console.log(r);
 
-export {};
+export { };
