@@ -19,6 +19,7 @@ function maxDepth(root: TreeNode | null): number {
       node.right && queue.push(node.right);
     }
 
+    // 遍历完每层，+1
     r++;
   }
 
