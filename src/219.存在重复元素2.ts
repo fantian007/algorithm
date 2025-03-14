@@ -1,18 +1,25 @@
+/**
+ * 滑动窗口
+ * 思路：维护一个宽度为 k 的窗口，移动，看窗口内是否有重复元素，即可
+ */
 function containsNearbyDuplicate(nums: number[], k: number): boolean {
-  const m: Record<number, number[]> = {};
+  const set = new Set();
 
-  for (let i = 0; i < nums.length; i++) {
-    const n = nums[i];
-
-    m[n] ??= [];
-    m[n].push(i);
-  }
-
-  const vs = Object.values(m);
-
-  for (const t of vs) {
-    if (t.length >= 2 && Math.abs(t.at(-1) - t.at(0)) <= k) {
+  // for (let v of nums) {
+  for(let i = 0; i < nums.length; i++) {
+    const v = nums[i];
+  
+    // 有重复元素
+    if (set.has(v)) {
       return true;
+    }
+
+    set.add(v);
+
+    if (set.size > k) {
+      // 移除窗口内第一个元素
+      set.delete(nums[i - k]);
+      // set.delete(set.values().next().value);
     }
   }
 
@@ -20,8 +27,8 @@ function containsNearbyDuplicate(nums: number[], k: number): boolean {
 };
 
 // const r = containsNearbyDuplicate([1,2,3,1], 3); // true
-// const r = containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2); // false
-const r = containsNearbyDuplicate([1, 0, 1, 1], 1); // true
+const r = containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2); // false
+// const r = containsNearbyDuplicate([1, 0, 1, 1], 1); // true
 console.log(r);
 
 export { }

@@ -13,33 +13,19 @@ export class TreeNode {
 }
 
 export const createTree = (arr: (number | null)[]) => {
-  const nodes: (TreeNode | null)[] = [];
+  const nodes: (TreeNode | null)[] = arr.map(v => v === null ? null : new TreeNode(v));
 
-  arr.forEach((v) => {
-    if (v !== null) {
-      nodes.push(new TreeNode(v));
-    } else {
-      nodes.push(null);
-    }
-  });
+  for (let i = 0; i < nodes.length; i++) {
+    const node = nodes[i];
+    
+    if (!node) continue;
 
-  let i = 0;
-  let left = 1;
-  let right = 2;
+    const j = 2 * i + 1;
+    const k = 2 * i + 2;
 
-  while (nodes[i] !== undefined) {
-    if (nodes[left] !== undefined && nodes[left] !== null) {
-      nodes[i].left = nodes[left];
-    }
-
-    if (nodes[right] !== undefined && nodes[right] !== null) {
-      nodes[i].right = nodes[right];
-    }
-
-    i += 1;
-    left = i * 2 + 1;
-    right = i * 2 + 2;
+    node.left = nodes[j] ?? null;
+    node.right = nodes[k] ?? null;
   }
 
-  return nodes[0];
+  return nodes.at(0);
 };

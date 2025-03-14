@@ -1,19 +1,19 @@
 import { createTree, TreeNode } from "./BinaryTree";
 
 /**
- * 整体过程：
- * 1. 开始：在一个节点的左右子树中找 p 或者 q。找到 p 或者 q 就返回，所以回溯结果是 p 或者 q（走下列 if 分支的 2,3）。
- * 2. 递归会持续向上回溯，当回溯到中间某个节点时，发现 p,q 分别在当前节点的左右子树（走到了if分支的 1），那么共同父节点就是 当前节点（到该节点时，改变了回溯向上层返回的值）
- * 3. 回溯继续，此后回溯向上层返回的值不再是 p,q，而是中间结算出的共同父节点
- * 4. 共同父节点会一直向上传递（不再走 if 分支的 1, 始终是 2或者3，所以不会再改变向上返回的值，而是直接返回给上层）
+ * 关键：p 或者 q 是一个子树的根节点，那么该 根节点 就是公共祖先 节点
+ * 1. 从左右子树中找公共祖先，如果分布在左右子树，那么当前节点 就是公共祖先
+ * 2. 如果都在左子树，最近的公共祖先不一定是当前节点，如果保证得到最近的公共节点?
+ *     那就是一旦中间递归时找到了最近公共节点，那就不要做其它操作，直接向上层返回
+ * 3. 如果都在右子树，同上
  */
 function lowestCommonAncestor(
   root: TreeNode | null,
   p: TreeNode | null,
   q: TreeNode | null
 ): TreeNode | null {
+  // 只要其中一个节点是根，那么共同父节点一定就是 根节点
   if (root === p || root === q || root === null) {
-    // 找到 p 或者 q, 或者 叶子节点 时停止递归
     return root;
   }
 
@@ -21,8 +21,6 @@ function lowestCommonAncestor(
   const left = lowestCommonAncestor(root.left, p, q);
   // 右子树 里找最近父节点
   const right = lowestCommonAncestor(root.right, p, q);
-
-  // 以下就是接收到下层返回的值后，中间回溯处理的逻辑，处理之后的结果，再继续返回给上层（回溯传递的结果，中间会不会被改变，就看下面的逻辑了）
 
   // 1. p, q 在 root 的两侧，那么 root 就是最近的父节点
   if (left && right) return root;

@@ -1,5 +1,3 @@
-const arr = [6, 1, 4, 2, 3, 5];
-
 /**
  * 
  * @see 动态图片演示 https://mmbiz.qpic.cn/mmbiz_gif/D67peceibeISwc3aGibUlvZ0XqVnbWtBRiaiatKZU4exjwcluduiclJOdZB0oZQicCrpIEaSJJg8iaia58viauSK3nhofqA/640?wx_fmt=gif&wxfrom=5&wx_lazy=1
@@ -30,6 +28,10 @@ const sort = (arr: number[]) => {
   return arr;
 }
 
+const arr = [1, 4, 6, 2];
+// const arr = [6, 1, 4, 2, 3, 5];
 const r = sort(arr);
 
 console.log(r);
+
+export { }

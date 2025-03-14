@@ -14,7 +14,8 @@ function inorderTraversal(root: TreeNode | null): number[] {
   return res;
 }
 
-const r = inorderTraversal(createTree([1, 3, 2, 5, 4, 6]));
+const tree = createTree([1, 3, 2, 5, 4, 6]);
+const r = inorderTraversal(tree);
 console.log(r);
 
 export {};

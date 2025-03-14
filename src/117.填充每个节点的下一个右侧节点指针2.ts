@@ -10,7 +10,6 @@ function connect(root: _Node | null): _Node | null {
     return null;
   }
 
-  const r: _Node[][] = [];
   const queue: _Node[] = [root];
 
   while (queue.length) {
@@ -26,16 +25,11 @@ function connect(root: _Node | null): _Node | null {
       node.right && queue.push(node.right);
     };
 
-    // 收集每层节点
-    r.push(curLevel);
+    // 连接当前层节点
+    for (let i = 0; i < curLevel.length - 1; i++) {
+      curLevel[i].next = curLevel[i + 1];
+    }
   }
-
-  // 每层节点 next 连接
-  for (let i = 0; i < r.length; i++) {
-    for (let j = 0; j < r[i].length; j++) {
-      r[i][j].next = r[i][j + 1] ?? null;
-    };
-  };
 
   return root;
 };
