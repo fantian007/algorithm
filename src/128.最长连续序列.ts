@@ -9,7 +9,7 @@ function longestConsecutive(nums: number[]): number {
   let r = 1;
 
   for (let i = 1; i < nums.length; i++) {
-    if (nums[i] == nums[i - 1] + 1) {
+    if (nums[i] === nums[i - 1] + 1) {
       start++;
     }
     // 注意：下一个可能是相同的数
