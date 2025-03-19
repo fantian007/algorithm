@@ -3,16 +3,13 @@ function merge(intervals: number[][]): number[][] {
     return intervals;
   }
 
-
   const len = intervals.length;
   // 按区间开头排序
   intervals.sort((a, b) => a[0] - b[0]);
 
   const r: number[][] = [];
-  // 区间开始
-  let start = intervals[0][0];
-  // 区间结束
-  let end = intervals[0][1];
+
+  let [start, end] = intervals[0];
 
   for (let i = 1; i < len; i++) {
     // 新区间开始
@@ -27,7 +24,7 @@ function merge(intervals: number[][]): number[][] {
   };
 
   // 防止漏掉最后一个区间
-  if (r.length === 0 || r[r.length - 1][1] !== end) {
+  if (r.length === 0 || r.at(-1)[1] !== end) {
     r.push([start, end]);
   }
 
