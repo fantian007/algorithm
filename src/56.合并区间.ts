@@ -10,8 +10,7 @@ function merge(intervals: number[][]): number[][] {
 
   const r: number[][] = [];
   // 每个不重叠区间起始点
-  let left = intervals[0][0];
-  let right = intervals[0][1];
+  let [left, right] = intervals[0];
 
   for (let i = 1; i < len; i++) {
     // 重叠，更新右边界
@@ -22,8 +21,7 @@ function merge(intervals: number[][]): number[][] {
     else {
       r.push([left, right]);
 
-      left = intervals[i][0];
-      right = intervals[i][1];
+      [left, right] = intervals[i];
     }
   }
 
