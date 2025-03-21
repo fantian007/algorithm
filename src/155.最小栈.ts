@@ -1,21 +1,20 @@
 class MinStack {
   stack = [];
-  // 辅助栈：栈顶一直存放最小值
+  // 辅助栈：栈顶一直存放最小值（元素值不是和stack一一对应的，数量是相同的）
   helpStack = [];
 
-  constructor() {
-  }
+  constructor() { }
 
   push(val: number): void {
-    this.stack.push(val);
-
-    if (val > this.helpStack[this.helpStack.length - 1]) {
-      // 栈顶元素最小，再次入栈相同值
-      this.helpStack.push(this.helpStack[this.helpStack.length - 1]);
+    if (val > this.helpStack.at(-1)) {
+      // 栈顶元素保持最小，再次入栈相同值（数量要保持一致）
+      this.helpStack.push(this.helpStack.at(-1));
     } else {
       // 将新入栈的最小值入辅助栈
       this.helpStack.push(val);
     }
+
+    this.stack.push(val);
   }
 
   pop(): void {
@@ -25,11 +24,11 @@ class MinStack {
   }
 
   top(): number {
-    return this.stack[this.stack.length - 1];
+    return this.stack.at(-1);
   }
 
   getMin(): number {
-    return this.helpStack[this.helpStack.length - 1];
+    return this.helpStack.at(-1);
   }
 }
 
