@@ -4,17 +4,13 @@ import { ListNode } from './ListNode';
 function hasCycle(head: ListNode | null): boolean {
   const map = new Map<ListNode, 1>();
 
-  let s = head;
-  map.set(head, 1);
+  let p = head;
 
-  while (s && s.next) {
-    s = s.next;
+  while (p) {
+    if (map.get(p)) return true;
 
-    if (!map.has(s)) {
-      map.set(s, 1);
-    } else {
-      return true;
-    }
+    map.set(p, 1);
+    p = p.next;
   }
 
   return false;

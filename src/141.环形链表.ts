@@ -1,22 +1,6 @@
-/*
- * @lc app=leetcode.cn id=141 lang=typescript
- *
- * [141] 环形链表
- */
+import { ListNode } from "./ListNode";
 
-// @lc code=start
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     val: number
- *     next: ListNode | null
- *     constructor(val?: number, next?: ListNode | null) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.next = (next===undefined ? null : next)
- *     }
- * }
- */
-
+// 快慢指针
 function hasCycle(head: ListNode | null): boolean {
   let p1, p2;
   p1 = p2 = head;
@@ -33,5 +17,15 @@ function hasCycle(head: ListNode | null): boolean {
 
   return false;
 };
-// @lc code=end
 
+
+const a = new ListNode(3);
+const b = new ListNode(2);
+const c = new ListNode(0);
+const d = new ListNode(-4);
+a.next = b;
+b.next = c;
+c.next = d;
+// d.next = b; // 环
+
+console.log(hasCycle(a));

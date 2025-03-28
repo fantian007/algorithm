@@ -20,13 +20,7 @@ function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode
     p = p.next;
   }
 
-  if (p1) {
-    p.next = p1;
-  }
-
-  if (p2) {
-    p.next = p2;
-  }
+  p.next = p1 ?? p2;
 
   return h.next;
 };
@@ -43,4 +37,4 @@ const r = mergeTwoLists(a1, b1);
 console.log(r);
 
 
-export {};
+export { };

@@ -1,6 +1,7 @@
 import { ListNode } from './ListNode';
 
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+  // 构建新链表，存结果
   const n = new ListNode();
 
   let p1 = l1;
