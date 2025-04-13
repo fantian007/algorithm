@@ -2,30 +2,37 @@
 import { ListNode } from './ListNode';
 
 function reverseBetween(head: ListNode | null, left: number, right: number): ListNode | null {
-  // 先写好前N个节点的反转
+  /**
+   * 反转链表的前 n 个节点
+   * 1. 每次反转 2 个节点
+   */
   const reverseN = (head: ListNode, n: number) => {
+    // 递归终止条件，当节点剩下1个，直接返回
     if (n === 1) {
       return head;
     }
 
-    // 新链表头节点
+    // 已反转链表的头节点
+    // 接下来只需要将 head, head.next 2个节点反转
     const last = reverseN(head.next, n - 1);
-    // 假设 [1,2,3]反转，那么 post = 3
-    const post = head.next.next;
-    // 反转节点（每次递归反正2个节点），变为 [2,1,3]
-    head.next.next = head;
-    // 将 1.next 设置为 3
-    head.next = post;
 
+    // 暂存 head.next 的下一个节点
+    const _t = head.next.next;
+    // head.next 指向 head
+    head.next.next = head;
+    // 反转之后，再 next 连接暂存节点
+    head.next = _t;
+
+    // 返回 头节点
     return last;
   }
 
-  // 如果 left为1，说明从头节点开始反转，到 right 停止（递归的终止条件）
+  // left === 1，直接反转 前 n 个 节点
   if (left === 1) {
     return reverseN(head, right);
   }
 
-  // 递归
+  // 否则，反转 区间
   head.next = reverseBetween(head.next, left - 1, right - 1);
 
   return head;
@@ -42,7 +49,7 @@ a2.next = a3;
 a3.next = a4;
 a4.next = a5;
 
-const r = reverseBetween(a1, 2, 4);
+const r = reverseBetween(a1, 1, 3);
 console.log(JSON.stringify(r));
 
 export { }
