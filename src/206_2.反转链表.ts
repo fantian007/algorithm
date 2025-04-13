@@ -1,4 +1,4 @@
-import { ListNode } from './ListNode';
+import { ListNode, createLinkList } from './ListNode';
 
 function reverseList(head: ListNode | null): ListNode | null {
   let prev: ListNode | null = null;
@@ -13,14 +13,7 @@ function reverseList(head: ListNode | null): ListNode | null {
 
   return prev;
 }
-
-const a = new ListNode(1);
-const b = new ListNode(2);
-const c = new ListNode(3);
-
-a.next = b;
-b.next = c;
-
+const a = createLinkList([1, 2, 3]);
 const r = reverseList(a);
 
 console.log(JSON.stringify(r));
