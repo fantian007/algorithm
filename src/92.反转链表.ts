@@ -1,5 +1,5 @@
 
-import { ListNode } from './ListNode';
+import { ListNode, createLinkList } from './ListNode';
 
 function reverseBetween(head: ListNode | null, left: number, right: number): ListNode | null {
   /**
@@ -38,17 +38,7 @@ function reverseBetween(head: ListNode | null, left: number, right: number): Lis
   return head;
 };
 
-const a1 = new ListNode(1);
-const a2 = new ListNode(2);
-const a3 = new ListNode(3);
-const a4 = new ListNode(4);
-const a5 = new ListNode(5);
-
-a1.next = a2;
-a2.next = a3;
-a3.next = a4;
-a4.next = a5;
-
+const a1 = createLinkList([1, 2, 3, 4, 5]);
 const r = reverseBetween(a1, 1, 3);
 console.log(JSON.stringify(r));
 

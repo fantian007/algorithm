@@ -1,4 +1,4 @@
-import { ListNode } from './ListNode';
+import { ListNode, createLinkList } from './ListNode';
 
 function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
   if (head === null) {
@@ -19,7 +19,7 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
       cur = next;
     }
 
-    // prev= cur 之后，pre 就是新链表头节点，返回 pre
+    // prev = cur 之后，pre 就是新链表头节点，返回 pre
     return pre;
   }
 
@@ -46,18 +46,7 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
   return newHead;
 };
 
-
-const a1 = new ListNode(1);
-const a2 = new ListNode(2);
-const a3 = new ListNode(3);
-const a4 = new ListNode(4);
-const a5 = new ListNode(5);
-
-a1.next = a2;
-a2.next = a3;
-a3.next = a4;
-a4.next = a5;
-
+const a1 = createLinkList([1, 2, 3, 4, 5]);
 const r = reverseKGroup(a1, 3);
 console.log(JSON.stringify(r));
 

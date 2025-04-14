@@ -1,4 +1,4 @@
-import { ListNode } from './ListNode';
+import { ListNode, createLinkList } from './ListNode';
 
 function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
   if (head === null || head.next === null) {
@@ -16,16 +16,17 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
     }
 
     // 新链表头节点
-    const last = reverseN(head.next, n - 1);
-    // 假设 [1,2,3]反转，那么 post = 3
-    const post = head.next.next;
-    // 反转节点（每次递归反正2个节点），变为 [2,1,3]
+    const h = reverseN(head.next, n - 1);
+
+    // 暂存 head.next 的 下一个节点
+    const _t = head.next.next;
+    // 反转前2个节点
     head.next.next = head;
-    // 将 1.next 设置为 3
-    head.next = post;
+    // 尾结点 接 暂存节点
+    head.next = _t;
 
     // 返回头节点
-    return last;
+    return h;
   }
 
   // 区间反转
@@ -54,19 +55,7 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
   return head;
 };
 
-
-const a1 = new ListNode(1);
-const a2 = new ListNode(2);
-const a3 = new ListNode(3);
-const a4 = new ListNode(4);
-const a5 = new ListNode(5);
-const a6 = new ListNode(6);
-
-a1.next = a2;
-a2.next = a3;
-a3.next = a4;
-a4.next = a5;
-a5.next = a6;
+const a1 = createLinkList([1, 2, 3, 4, 5, 6]);
 
 const r = reverseKGroup(a1, 3);
 console.log(JSON.stringify(r));
