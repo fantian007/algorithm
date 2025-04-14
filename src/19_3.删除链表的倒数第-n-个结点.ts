@@ -1,4 +1,4 @@
-import { ListNode } from './ListNode';
+import { ListNode, createLinkList } from './ListNode';
 
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
   // 虚拟节点
@@ -30,18 +30,7 @@ function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
   return p1 === h ? p1.next : head;
 }
 
-
-const a = new ListNode(1);
-const b = new ListNode(2);
-const c = new ListNode(3);
-const d = new ListNode(4);
-const e = new ListNode(5);
-
-a.next = b;
-b.next = c;
-c.next = d;
-d.next = e;
-
+const a = createLinkList([1, 2, 3, 4, 5]);
 // const r = removeNthFromEnd(a, 1);
 const r = removeNthFromEnd(a, 2);
 

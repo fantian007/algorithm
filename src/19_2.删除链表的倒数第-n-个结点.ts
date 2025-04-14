@@ -1,4 +1,4 @@
-import { ListNode } from './ListNode';
+import { ListNode, createLinkList } from './ListNode';
 
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
   if (head === null || (head.next === null && n === 1)) {
@@ -39,16 +39,7 @@ function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
   return head;
 }
 
-
-const a = new ListNode(1);
-const b = new ListNode(2);
-const c = new ListNode(3);
-const d = new ListNode(4);
-
-a.next = b;
-b.next = c;
-c.next = d;
-
+const a = createLinkList([1, 2, 3, 4]);
 const r = removeNthFromEnd(a, 0);
 
 console.log(JSON.stringify(r));
