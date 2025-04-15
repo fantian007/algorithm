@@ -1,4 +1,4 @@
-import { ListNode } from './ListNode';
+import { ListNode, createLinkList } from './ListNode';
 
 function partition(head: ListNode | null, x: number): ListNode | null {
   if (head === null) {
@@ -49,20 +49,6 @@ function partition(head: ListNode | null, x: number): ListNode | null {
   return h.next;
 };
 
-const a = new ListNode(1);
-const b = new ListNode(4);
-const c = new ListNode(3);
-const d = new ListNode(2);
-const e = new ListNode(5);
-const f = new ListNode(2);
-
-a.next = b;
-b.next = c;
-c.next = d;
-d.next = e;
-e.next = f;
-
+const a = createLinkList([1, 4, 3, 2, 5, 2]);
 const r = partition(a, 3);
 console.log(JSON.stringify(r));
-
-

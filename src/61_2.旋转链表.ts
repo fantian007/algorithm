@@ -27,7 +27,6 @@ function rotateRight(head: ListNode | null, k: number): ListNode | null {
 
   let newHead = newTail.next;
   newTail.next = null;
-  // 将原链表的尾节点连接到原链表的头节点
   tail.next = head;
 
   return newHead;
