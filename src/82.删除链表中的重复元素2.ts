@@ -1,4 +1,4 @@
-import { ListNode } from './ListNode';
+import { ListNode, createLinkList } from './ListNode';
 
 function deleteDuplicates(head: ListNode | null): ListNode | null {
   // 记录链表中各个节点的数量
@@ -13,8 +13,7 @@ function deleteDuplicates(head: ListNode | null): ListNode | null {
   }
 
   // 虚拟头节点
-  const h = new ListNode(-Infinity);
-  h.next = head;
+  const h = new ListNode(-Infinity, head);
   let p2 = h;
 
   while (p2.next) {
@@ -30,16 +29,6 @@ function deleteDuplicates(head: ListNode | null): ListNode | null {
   return h.next;
 };
 
-const a = new ListNode(1);
-const b = new ListNode(2);
-const c = new ListNode(2);
-const d = new ListNode(5);
-const e = new ListNode(5);
-
-a.next = b;
-b.next = c;
-c.next = d;
-d.next = e;
-
+const a = createLinkList([1, 2, 2, 5, 5]);
 const r = deleteDuplicates(a);
 console.log(JSON.stringify(r));
