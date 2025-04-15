@@ -1,5 +1,5 @@
 
-import { ListNode } from './ListNode';
+import { ListNode, createLinkList } from './ListNode';
 
 // 将链表拆开 + 拼接
 function rotateRight(head: ListNode | null, k: number): ListNode | null {
@@ -53,16 +53,6 @@ function rotateRight(head: ListNode | null, k: number): ListNode | null {
   return p3;
 };
 
-const a = new ListNode(1);
-const b = new ListNode(2);
-const c = new ListNode(3);
-const d = new ListNode(4);
-const e = new ListNode(5);
-
-a.next = b;
-b.next = c;
-c.next = d;
-d.next = e;
-
+const a = createLinkList([1, 2, 3, 4, 5]);
 const r = rotateRight(a, 2); // 2,3,4,5,1
 console.log(JSON.stringify(r));
