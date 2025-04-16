@@ -29,6 +29,7 @@ class LRUCache {
 
   put(key: number, value: number): void {
     if (this.cache.has(key)) {
+      // 注意：put 也要更新最近使用（先删除，再更新）
       this.cache.delete(key);
     } else {
       // 容量超了，删除第一个数

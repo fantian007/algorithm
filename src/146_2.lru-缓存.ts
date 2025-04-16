@@ -2,141 +2,148 @@
  * 双链表节点
  */
 class LinkListNode {
-  // LRU 以 node 为主，包括排序也是基于 node 排序，不依赖与 map 元素的顺序，map 只用来提速查询
   key: number;
-  value: number;
-  prev: this | null = null;
-  next: this | null = null;
+  val: number;
+  prev: this | null;
+  next: this | null;
 
-  constructor(key: number, value: number) {
+  constructor(key: number, val: number) {
     this.key = key;
-    this.value = value;
+    this.val = val;
   }
 }
 
+/**
+ * 双链表
+ * 1. 添加尾部节点（最近使用）
+ * 2. 删除节点 （删除后，再添加到尾部，相当于更新节点到最近使用）
+ * 3. 删除首节点（超出阈值时，首先删除首节点，最久未使用节点）
+ */
 class DoubleLinkedList {
-  // 虚拟头尾节点
   head = new LinkListNode(-1, -1);
   tail = new LinkListNode(-1, -1);
-  // map 只做查询，不要依赖 map.size，在链表中手动记录 size
   size = 0;
 
-  constructor() {
-    // 头尾节点连接
+  constructor () {
     this.head.next = this.tail;
     this.tail.prev = this.head;
   }
 
-  // 将节点添加到链表尾部（最近使用）
-  addLast(node: LinkListNode) {
-    // 前后节点（最好这样重命名一下，更明确，否则容易写乱），中间插入 node
-    const beforeNode = this.tail.prev;
-    const afterNode = this.tail;
+  /**
+   * 添加到链表尾部
+   */
+  addLast (node: LinkListNode) {
+    // 插入点 前面节点
+    const p = this.tail.prev;
+    // 插入点 后面节点
+    const n = this.tail;
+  
+    p.next = node;
+    node.prev = p;
 
-    beforeNode.next = node;
-    node.prev = beforeNode;
-
-    node.next = afterNode;
-    afterNode.prev = node;
+    node.next = n;
+    n.prev = node;
 
     this.size++;
   }
 
-  // 移除节点
+  /**
+   * 移除节点
+   */
   remove(node: LinkListNode) {
-    node.prev.next = node.next;
-    node.next.prev = node.prev;
+    const p = node.prev;
+    const n = node.next;
+    
+    p.next = n;
+    n.prev = p;
 
     this.size--;
   }
+  
+  /**
+   * 移除第一个节点
+   */
+  removeFirst () {
+    if (this.size === 0) return null;
 
-  // 移除第一个节点
-  // 删除 首节点，需要将 map 中对应节点删除，需要知道 node 在 map 中对应的 key, 这也是为什么 node 中需要存储 key 字段 的原因
-  removeFirst() {
-    if (this.head.next === this.tail) {
-      return null;
-    }
+    const f = this.head.next;
+    this.remove(f);
 
-    const node = this.head.next;
-    this.remove(node);
-    return node.key;
+    return f.key;
   }
 }
 
+/**
+ * LRU
+ */
 class LRUCache {
-  // 缓存容量
-  capacity: number = 0;
-  // 双链表
+  // 双链表记录节点（tail 是最近使用的, head 是很久未使用的）
   cache = new DoubleLinkedList();
-  // 记录 { key: 节点 }，方便查找(直接用双链表记录 key 查找也行，但是 map 更快)
+  // map 记录 k: 节点 的映射，加速查找
   map = new Map<number, LinkListNode>();
+  capacity: number;
 
-  constructor(capacity = 0) {
+  constructor(capacity: number) {
     this.capacity = capacity;
   }
 
-  // 将节点提升到最近使用位置，先删除，再添加到尾部（非添加/删除操作，不操作 map）
-  makeRecent(node: LinkListNode) {
-    this.cache.remove(node);
-    this.cache.addLast(node);
-  }
-
-  // 将节点添加到最近使用位置
-  addRecent(node: LinkListNode) {
-    this.cache.addLast(node);
-    // 链表中添加元素，map 中也要添加
-    this.map.set(node.key, node);
-  }
-
-  // 移除第一个节点
-  removeFirst() {
-    const k = this.cache.removeFirst();
-
-    if (k !== null) {
-      // 链表中删除元素，map 也要删除
-      this.map.delete(k);
-    }
-  }
-
-  get(key: number) {
+  /**
+   * 移动节点到双链表尾部（更新为最近使用）
+   */
+  makeRecent(key: number) {
     const node = this.map.get(key);
 
     if (node) {
-      // 移动到链表尾部（最近使用）
-      this.makeRecent(node);
-      return node.value;
-    } else {
-      return -1;
+      this.cache.remove(node);
+      this.cache.addLast(node);
     }
   }
 
-  put(key: number, value: number) {
-    const old = this.map.get(key);
+  get(key: number): number {
+    // 更新最近使用
+    this.makeRecent(key);
 
-    if (old) {
-      // 更新值
-      old.value = value;
-      // 移动到尾部
-      this.makeRecent(old);
-    } else {
-      // 新节点
-      const node = new LinkListNode(key, value);
+    return this.map.get(key)?.val ?? -1;
+  }
+
+  put(key: number, value: number): void {
+    const node = this.map.get(key);
+
+    // 有缓存，更新值
+    if (node) {
+      node.val = value;
+    }
+    // 无缓存，添加值
+    else {
+      const _node = new LinkListNode(key, value);
       // 添加到尾部
-      this.addRecent(node);
+      this.cache.addLast(_node);
+      // map 中也要添加
+      this.map.set(key, _node);
     }
 
+    // 更新最近使用
+    this.makeRecent(key);
+
+    // 超容量
     if (this.cache.size > this.capacity) {
-      this.removeFirst();
+      // 删除缓存首节点
+      const _k = this.cache.removeFirst();
+      // map 中也要删除
+      this.map.delete(_k);
     }
   }
 }
 
-const c = new LRUCache(2);
-c.put(2, 1);
-c.put(2, 2);
-console.log(c.get(2)); // 2
-c.put(1, 1);
-c.put(4, 1);
-console.log(c.get(2)); // -1
+const a = new LRUCache(2);
+a.put(1, 0);
+a.put(2, 2);
+console.log(a.get(1)); // 0
+a.put(3, 3);
+console.log(a.get(2)); // -1
+a.put(4, 4);
+console.log(a.get(1)); // -1
+console.log(a.get(3)); // 3
+console.log(a.get(4)); // 4
 
-export { };
+export { }
