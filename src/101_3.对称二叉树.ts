@@ -11,15 +11,17 @@ function isSymmetric(root: TreeNode | null): boolean {
     // 边界条件
     if (!node1 && !node2) {
       return true;
-    } else if (!node1 || !node2) {
-      return false;
-    } else if (node1.val !== node2.val) {
+    }
+
+    if (!node1 || !node2) {
       return false;
     }
-    // 单层递归逻辑
-    else {
-      return compare(node1.left, node2.right) && compare(node1.right, node2.left);
+
+    if (node1.val !== node2.val) {
+      return false;
     }
+
+    return compare(node1.left, node2.right) && compare(node1.right, node2.left);
   }
 
   return compare(root.left, root.right);

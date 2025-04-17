@@ -1,5 +1,6 @@
 import { TreeNode, createTree } from "./BinaryTree";
 
+// 双端队列
 function isSymmetric(root: TreeNode | null): boolean {
   if (!root) {
     return true;

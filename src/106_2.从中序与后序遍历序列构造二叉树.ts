@@ -23,6 +23,11 @@ function buildTree(inorder: number[], postorder: number[]): TreeNode | null {
     root.left = buildTree(l, postorder);
   }
 
+  // 不能按以下方式简化了，因为必须先构建右子树
+  // 由于 postorder 是 pop 操作，按左右中顺序，优先 pop 出的是 右子树 的中节点，所以优先构建右子树
+  // 以下方式会优先构建左子树
+  // return new TreeNode(center, buildTree(l, postorder), buildTree(r, postorder));
+
   return root;
 };
 

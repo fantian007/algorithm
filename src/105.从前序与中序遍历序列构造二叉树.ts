@@ -11,33 +11,25 @@ import { createTree, TreeNode } from "./BinaryTree";
  * 7. 根节点.left = 左子树递归结果
  * 8. 根节点.right = 右子树递归结果
  */
+
 function buildTree(preorder: number[], inorder: number[]): TreeNode | null {
-  if (preorder.length === 0) {
-    return null;
-  }
+  if (!preorder.length) return null;
 
-  const first = preorder.shift();
+  const center = preorder.shift();
+  // 中节点
+  const i = inorder.findIndex(f => f === center);
 
-  const root = new TreeNode(first);
+  // 中节点 分割中序遍历
+  const left_inorder = inorder.slice(0, i);
+  const right_inorder = inorder.slice(i + 1);
+  // 反过来用长度 分割前序遍历
+  const left_preorder = preorder.slice(0, left_inorder.length);
+  const right_preorder = preorder.slice(left_inorder.length);
 
-  if (preorder.length === 0) {
-    return root;
-  }
-
-  const center = inorder.findIndex(f => f === first);
-  const inorderLeft = inorder.slice(0, center);
-  const inorderRight = inorder.slice(center + 1, inorder.length);
-
-  const preorderLeft = preorder.slice(0, inorderLeft.length);
-  const preorderRight = preorder.slice(inorderLeft.length, preorder.length);
-
-  root.left = buildTree(preorderLeft, inorderLeft);
-  root.right = buildTree(preorderRight, inorderRight);
-
-  return root;
-}
+  return new TreeNode(center, buildTree(left_preorder, left_inorder), buildTree(right_preorder, right_inorder));
+};
 
 const r = buildTree([3, 9, 20, 15, 7], [9, 3, 15, 20, 7]);
 console.log(r);
 
-export {};
+export { };

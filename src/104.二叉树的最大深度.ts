@@ -8,10 +8,9 @@ function maxDepth(root: TreeNode | null): number {
   let deepth = 0;
 
   const traverse = (node: TreeNode) => {
-    if (node === null) {
-      // 到达叶子节点时，更新 res
+    if (!node) {
+      // 到达叶子节点时，更新 r
       r = Math.max(r, deepth);
-      return r;
     }
 
     deepth++;
