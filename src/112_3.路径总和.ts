@@ -8,15 +8,14 @@ function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
     return false;
   }
 
-  if (!root.left && !root.right) {
-    return targetSum === root.val;
+  const rest = targetSum - root.val;
+
+  if (rest === 0 && !root.left && !root.right) {
+    return true;
   }
 
   // 左子树 || 右子树
-  return (
-    hasPathSum(root.left, targetSum - root.val) ||
-    hasPathSum(root.right, targetSum - root.val)
-  );
+  return hasPathSum(root.left, rest) || hasPathSum(root.right, rest);
 }
 
 const tree = createTree([1, 2, 3, 4, 5, 6]);
@@ -24,4 +23,4 @@ const tree = createTree([1, 2, 3, 4, 5, 6]);
 const r = hasPathSum(tree, 8);
 console.log(r);
 
-export {};
+export { };

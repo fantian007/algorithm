@@ -3,10 +3,13 @@ import { TreeNode, createTree } from './BinaryTree';
 
 /**
  * 递归 + 后序遍历，从叶子节点往上找
- * 最大路径和：左子树最大路径和 + 当前节点值 + 右子树最大路径和
- * 当前操作节点的路径，只能选择左右其中一个分支，选较大的分支
+ * 
+ * 思路：选择一个节点，该节点处于路径中，有 2 种情况：
+ * 1. 该节点是顶节点，那么路径就是：左 + 中 + 右
+ * 2. 该节点非顶节点，那么路径经过其 左/右 其中一个节点（或者谁都不经过，该节点是路径端点）
  */
 function maxPathSum(root: TreeNode | null): number {
+  // 注意：
   let max = -Infinity;
 
   const traverse = (node: TreeNode | null) => {
@@ -19,12 +22,11 @@ function maxPathSum(root: TreeNode | null): number {
     // 右节点最大和（同上）
     const right = Math.max(traverse(node.right), 0);
 
-    // 当前节点是顶层节点，还必须处于路径中，那只有一条路径：只能是 左（最大）+ 当前节点 + 右（最大）
+    // 经过当前点的最大路径和（包含 顶点/非顶点 2种情况）
     max = Math.max(max, left + node.val + right);
 
-    // 选择左右其中较大分支
-    const n = node.val + Math.max(left, right);
-    return n;
+    // 经过了当前节点，还要递归返给上层，路径不能分叉，所以只可选左右其中一个分支
+    return node.val + Math.max(left, right);
   }
 
   traverse(root);

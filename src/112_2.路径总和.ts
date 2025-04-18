@@ -18,13 +18,13 @@ function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
 
     if (node.left) {
       cnt -= node.left.val;
-      if(traverse(node.left, cnt)) return true;
+      if (traverse(node.left, cnt)) return true;
       cnt += node.left.val;
     }
-    
+
     if (node.right) {
       cnt -= node.right.val;
-      if(traverse(node.right, cnt)) return true;
+      if (traverse(node.right, cnt)) return true;
       cnt += node.right.val;
     }
 
@@ -39,4 +39,4 @@ const tree = createTree([1, 2, 3, 4, 5, 6]);
 const r = hasPathSum(tree, 8);
 console.log(r);
 
-export {};
+export { };
