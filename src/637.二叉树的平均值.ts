@@ -2,6 +2,7 @@ import { createTree, TreeNode } from "./BinaryTree";
 
 function averageOfLevels(root: TreeNode | null): number[] {
   const r: number[][] = [];
+  // const s: number[] = [];
   const queue: TreeNode[] = [root];
 
   while (queue.length) {
@@ -18,10 +19,12 @@ function averageOfLevels(root: TreeNode | null): number[] {
     }
 
     r.push(curLevel);
+    // s.push(curLevel.reduce((a, b) => a + b, 0) / len);
   }
 
   // 层序遍历，每层求平均值
   return r.flatMap((f) => f.reduce((a, b) => a + b, 0) / f.length);
+  // return s;
 }
 
 const tree = createTree([3, 9, 20, null, null, 15, 7]);

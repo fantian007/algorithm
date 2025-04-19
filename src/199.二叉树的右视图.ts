@@ -17,6 +17,7 @@ function rightSideView(root: TreeNode | null): number[] {
     for (let i = 0; i < len; i++) {
       const node = queue.shift();
 
+      // 只收集每层的最后一个节点
       if (i === len - 1) {
         r.push(node.val);
       }

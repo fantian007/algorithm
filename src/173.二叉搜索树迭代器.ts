@@ -2,13 +2,13 @@ import { TreeNode, createTree } from './BinaryTree';
 
 class BSTIterator {
   arr: number[] = [];
-  curIndex = -1;
+  i = 0;
 
   constructor(root: TreeNode | null) {
-    // 中序遍历
     this.traverse(root);
   }
 
+  // 中序遍历
   traverse(node: TreeNode | null) {
     if (!node) {
       return;
@@ -20,15 +20,11 @@ class BSTIterator {
   }
 
   next(): number {
-    const v = this.arr[++this.curIndex];
-
-    return v;
+    return this.arr[this.i++];
   }
 
   hasNext(): boolean {
-    const nextIndex = this.curIndex + 1;
-
-    return nextIndex <= this.arr.length - 1;
+    return this.arr[this.i] !== undefined;
   }
 }
 

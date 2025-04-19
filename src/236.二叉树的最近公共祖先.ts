@@ -12,7 +12,7 @@ function lowestCommonAncestor(
   p: TreeNode | null,
   q: TreeNode | null
 ): TreeNode | null {
-  // 只要其中一个节点是根，那么共同父节点一定就是 根节点
+  // 只要其中一个节点是根，那么共同父节点一定就是 该节点
   if (root === p || root === q || root === null) {
     return root;
   }

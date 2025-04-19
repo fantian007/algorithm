@@ -25,7 +25,7 @@ function zigzagLevelOrder(root: TreeNode | null): number[][] {
 
     r.push(flag  === 1 ? curLevel : curLevel.reverse());
 
-    flag = flag * -1;
+    flag = -flag;
   }
 
   return r;

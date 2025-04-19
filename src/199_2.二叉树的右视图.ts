@@ -28,7 +28,7 @@ function rightSideView(root: TreeNode | null): number[] {
   }
 
   // return r.map(m => m.at(-1));
-  return r.flatMap((f) => f.slice(-1));
+  return r.flatMap((f) => f.at(-1));
 }
 
 const tree = createTree([1, 2, 3, 4]);
