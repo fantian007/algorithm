@@ -8,21 +8,20 @@ const sort = (arr: number[]) => {
 
   for (let i = 1; i < len; i++) {
     let prevIndex = i - 1;
-    const current = arr[i];
+    let curIndex = i;
 
-    // 从小到大排序
-    // 从已经排序好的数组里面，从后往前取数，取出来的数 和 未排序的 current 比较
-    // 如果发现 取出的数 大于 current，那么大于 current 的部分的数均向后移动一位，将当前位置预留给 current 插入
-    while (prevIndex >= 0 && arr[prevIndex] > current) {
-      // 向后移动一位, prevIndex 位置预留给 current
+    const curV = arr[curIndex];
+
+    // [1,4,6,2]，对于 2 排序，先将数组移位成 [1,4,4,6]，即 4,6 均大于2，都向后移动，再将第二个4替换为2
+    while (prevIndex >= 0 && arr[prevIndex] > curV) {
+      // 移动
       arr[prevIndex + 1] = arr[prevIndex];
-      // 递减，继续下一次取数和比较
+
       prevIndex--;
-      // 递减完毕，但是还未移位，所以预留位置是 prevIndex + 1
     }
 
-    // 没有更大的了，将 current 放到对应位置上，完成排序
-    arr[prevIndex + 1] = current;
+    // 替换
+    arr[prevIndex + 1] = curV;
   }
 
   return arr;

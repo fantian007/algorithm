@@ -14,11 +14,12 @@ function coinChange(coins: number[], amount: number): number {
       if (i - coin < 0) continue;
 
       // 从几种币种的选择中，取最小值
+      // 不一定正好能组合成 i，不能组合的，其实就是 Infinity + 1 还是 Infinity
       dp[i] = Math.min(dp[i], (dp[i - coin]) + 1);
     }
   }
 
-  // 从 o-amount 计算过程中，有的被 continue 了，会有 Infinity 残留，需要判断一下
+  // 从 o-amount 计算过程中，有的被 continue 了/无法正好组合成目标值，会有 Infinity 残留，需要判断一下
   return dp[amount] === Infinity ? -1 : dp[amount];
 }
 

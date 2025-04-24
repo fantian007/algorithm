@@ -6,6 +6,7 @@ function climbStairs(n: number): number {
   dp[2] = 2;
 
   for (let i = 3; i <= n; i++) {
+    // 求方法数，不是步数
     dp[i] = dp[i - 1] + dp[i - 2];
   }
 

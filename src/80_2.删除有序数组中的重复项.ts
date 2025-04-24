@@ -1,3 +1,4 @@
+// 快慢指针
 function removeDuplicates(nums: number[]): number {
   const map = {};
 
@@ -17,3 +18,8 @@ function removeDuplicates(nums: number[]): number {
 
   return slow;
 };
+
+const r = removeDuplicates([1, 1, 1, 2, 2, 3]);
+console.log(r);
+
+export { }

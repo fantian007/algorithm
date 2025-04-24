@@ -30,6 +30,10 @@ function lowestCommonAncestor(
   else if (right) return right;
   // 4. 左右都没找到，返回 null
   else return null;
+
+  // 简化写法
+  // if (l && r) return root;
+  // return l || r;
 }
 
 const tree = createTree([3, 5, 1, 6, 2, 0, 8, null, null, 7, 4]);

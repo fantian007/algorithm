@@ -24,7 +24,8 @@ function longestConsecutive(nums: number[]): number {
   return r;
 };
 
-const r = longestConsecutive([100, 4, 200, 1, 3, 2]); // 4
+// const r = longestConsecutive([100, 4, 200, 1, 3, 2]); // 4
+const r = longestConsecutive([1, 2, 3, 4]); // 4
 // const r = longestConsecutive([0, -1]); // 2
 console.log(r);
 

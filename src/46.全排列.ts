@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode.cn id=46 lang=typescript
- *
- * [46] 全排列
- */
-
-// @lc code=start
 function permute(nums: number[]): number[][] {
   const res: number[][] = new Array(0);
   const used: boolean[] = new Array<boolean>(nums.length).fill(false);
@@ -36,7 +29,5 @@ function permute(nums: number[]): number[][] {
 
   return res;
 };
-// @lc code=end
-
 
 export {}

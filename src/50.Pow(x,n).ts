@@ -28,7 +28,7 @@ function myPow(x: number, n: number): number {
 
     // x 不断的乘以 x
     x *= x;
-    // Math.floor(n / 2)
+    // 无符号右移，相当于 Math.floor(n / 2)
     n >>>= 1;
   }
 

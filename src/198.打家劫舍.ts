@@ -7,8 +7,10 @@ function rob(nums: number[]): number {
   const len = nums.length;
 
   // 备忘录
-  const memo = new Array(len + 2).fill(undefined)
+  // const memo = new Array(len + 2).fill(undefined);
+  const memo = {};
 
+  // 从第 start 个房子开始抢劫
   const dp = (start: number) => {
     if (start > len - 1) {
       return 0;

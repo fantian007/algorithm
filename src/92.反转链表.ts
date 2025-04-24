@@ -13,8 +13,9 @@ function reverseBetween(head: ListNode | null, left: number, right: number): Lis
     }
 
     // 已反转链表的头节点
-    // 接下来只需要将 head, head.next 2个节点反转
     const last = reverseN(head.next, n - 1);
+
+    // 接下来只需要将 head, head.next 2个节点反转
 
     // 暂存 head.next 的下一个节点
     const _t = head.next.next;

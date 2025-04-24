@@ -7,6 +7,7 @@ function findPeakElement(nums: number[]): number {
   let i = 0;
 
   while (left <= right) {
+    // 随便找一个点，不除以 2 了
     i = Math.floor(left + Math.random() * (right - left));
 
     let p = nums[i - 1] ?? -Infinity;

@@ -5,6 +5,7 @@ function longestCommonSubsequence(text1: string, text2: string): number {
   // dp[i][j]: text1 截取 [0, i-1], text2 截取 [0, j-1] ，2个字符串的最长重复子数组长度
   const dp: number[][] = new Array(len1 + 1).fill(0).map(_ => new Array(len2 + 1).fill(0));
 
+  // 空字符串的情况
   dp[0][0] = 0;
 
   for (let i = 1; i <= len1; i++) {

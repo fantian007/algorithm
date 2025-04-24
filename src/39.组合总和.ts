@@ -1,10 +1,3 @@
-/*
- * @lc app=leetcode.cn id=39 lang=typescript
- *
- * [39] 组合总和
- */
-
-// @lc code=start
 function combinationSum(candidates: number[], target: number): number[][] {
   const res: number[][] = [];
 
@@ -35,5 +28,5 @@ function combinationSum(candidates: number[], target: number): number[][] {
 
   return res;
 };
-// @lc code=end
 
+export {}
