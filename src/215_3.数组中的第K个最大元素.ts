@@ -10,41 +10,38 @@
  * @see https://leetcode.cn/problems/kth-largest-element-in-an-array/solutions/307351/shu-zu-zhong-de-di-kge-zui-da-yuan-su-by-leetcod-2/?envType=study-plan-v2&envId=top-interview-150
  */
 function findKthLargest(nums: number[], k: number): number {
-  // 定义快速选择函数
-  const quickSelect = (left: number, right: number): number => {
-    // 选择最右边的元素作为枢轴
-    const pivot = nums[right];
-    let pivotIndex = left;
+  const quickSort = (left: number, right: number) => {
+    // 轴，固定不动，不参与交换
+    let pivot = right;
+    // 交换位置
+    let pos = left;
 
-    // 遍历左到右-1 的元素，将小于枢轴的元素放到左边
     for (let i = left; i < right; i++) {
-      if (nums[i] > pivot) {
-        // 交换元素
-        [nums[pivotIndex], nums[i]] = [nums[i], nums[pivotIndex]];
-        pivotIndex++;
+      if (nums[i] > nums[pivot]) {
+        [nums[i], nums[pos]] = [nums[pos], nums[i]];
+        pos++;
       }
     }
 
-    // 将枢轴放到正确的位置
-    [nums[pivotIndex], nums[right]] = [nums[right], nums[pivotIndex]];
+    // 轴位置值交换
+    [nums[pos], nums[pivot]] = [nums[pivot], nums[pos]];
 
-    // 此时枢轴的索引
-    const pivotFinalIndex = pivotIndex;
-
-    // 如果枢轴的索引等于 k - 1，说明找到了第 k 大的元素
-    if (pivotFinalIndex === k - 1) {
-      return nums[pivotFinalIndex];
-    } else if (pivotFinalIndex > k - 1) {
-      // 否则在左半部分继续寻找
-      return quickSelect(left, pivotFinalIndex - 1);
-    } else {
-      // 在右半部分继续寻找
-      return quickSelect(pivotFinalIndex + 1, right);
+    // 相等，直接返回
+    if (pos === k - 1) {
+      return nums[pos];
     }
-  };
+    // k-1 元素在 pos 左边，查找左边
+    else if (pos > k - 1) {
+      return quickSort(left, pos - 1);
+    }
+    // 查找右边
+    else {
+      return quickSort(pos + 1, right);
+    }
+  }
 
-  return quickSelect(0, nums.length - 1);
-}
+  return quickSort(0, nums.length - 1);
+};
 
 const r = findKthLargest([3, 2, 2, 1, 9, 1, 2, 10, 1, 5, 6, 4], 2); // 5
 console.log(r);
