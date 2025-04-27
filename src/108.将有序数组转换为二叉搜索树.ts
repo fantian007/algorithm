@@ -1,6 +1,6 @@
 import { TreeNode } from "./BinaryTree";
 
-// 找中间点作为每次递归的节点值
+// 顺序数组 递归找中点，构建出来的树，就是平衡树
 function sortedArrayToBST(nums: number[]): TreeNode | null {
   const len = nums.length;
 

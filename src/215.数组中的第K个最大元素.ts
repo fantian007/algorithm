@@ -12,9 +12,9 @@
 function findKthLargest(nums: number[], k: number): number {
   const n = nums.length;
 
-  const quickSelect = (left: number, right: number, k: number) => {
+  const quickSelect = (left: number, right: number, t: number) => {
     if (left === right) {
-      return nums[k];
+      return nums[t];
     }
 
     // 快排主元
@@ -34,12 +34,16 @@ function findKthLargest(nums: number[], k: number): number {
       }
     }
 
-    if (j >= k) {
+    // 数组：[小(j)，大]
+    // j === t 的位置就是目标值; t = n - k，意思是从右边开始数，求第 n-k 大的数；
+    // 如果 j 在 t 的右边，那么 t 就在 [left, t] 之间
+
+    if (j >= t) {
       // 左区间
-      return quickSelect(left, j, k);
+      return quickSelect(left, j, t);
     } else {
       // 右区间
-      return quickSelect(j + 1, right, k);
+      return quickSelect(j + 1, right, t);
     }
   }
 

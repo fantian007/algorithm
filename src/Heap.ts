@@ -42,7 +42,7 @@ export class Heap {
       largest = r;
     }
 
-    // 如果最大值不是当前节点，交换并递归调整
+    // 如果最大值不是当前节点，交换并递归调整（注意判断，否则死循环）
     if (largest !== i) {
       this.swap(i, largest);
       this.heapify(largest);
@@ -72,6 +72,7 @@ export class Heap {
   pop() {
     if (this.arr.length === 0) return null;
 
+    // 先取再 pop，不能反
     const head = this.arr[0];
     const tail = this.arr.pop();
 

@@ -2,6 +2,7 @@ function combinationSum(candidates: number[], target: number): number[][] {
   const r: number[][] = [];
 
   const backtracking = (path: number[], start: number) => {
+    // 存在重复计算，耗时长
     const sum = path.reduce((a, b) => a + b, 0);
 
     if (sum > target) {
