@@ -12,10 +12,10 @@ function rob(nums: number[]): number {
     dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
   }
 
-  return dp[n];
+  return dp[n - 1];
 }
 
 const r = rob([1, 2, 3, 1]);
 console.log(r);
 
-export {};
+export { };

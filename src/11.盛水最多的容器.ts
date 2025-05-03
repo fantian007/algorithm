@@ -16,6 +16,7 @@ function maxArea(height: number[]): number {
   let max = 0;
 
   while (left < right) {
+    // 储水量由短柱子决定
     max = Math.max(max, Math.min(height[left], height[right]) * (right - left));
 
     if (height[left] < height[right]) {

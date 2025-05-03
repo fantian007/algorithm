@@ -18,8 +18,9 @@ function longestPalindrome(s: string): string {
     left = right = i;
 
     // 要考虑 s[i] 和旁边元素相同的情况
-    while (--left && s[left] === s[i]); // 不需要函数体
-    while (++right && s[right] === s[i]);
+    // 注意：不能是 s[left--]，必须是 s[--left]
+    while (s[--left] === s[i]); // 不需要函数体
+    while (s[++right] === s[i]);
 
     // 然后再比较两侧元素
     while (left >= 0 && right <= n - 1 && s[left] === s[right]) {

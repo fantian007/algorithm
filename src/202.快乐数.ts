@@ -5,7 +5,9 @@ function isHappy(n: number): boolean {
     let sum = 0;
 
     while (n) {
+      // 最后一位的平方
       sum += (n % 10) ** 2;
+      // 去除最后一位
       n = Math.floor(n / 10);
     }
 

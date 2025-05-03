@@ -1,7 +1,7 @@
 /**
- * 直接递归有超时问题
+ * 直接递归有超时问题，需+ 备忘录
  * 
- * 可对重叠子问题优化
+ * 可对重叠子问题优化（递归 + 回溯）
  */
 function rob(nums: number[]): number {
   const len = nums.length;

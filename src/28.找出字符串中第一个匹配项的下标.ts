@@ -1,5 +1,5 @@
 /**
- * 暴力解法
+ * 暴力解法 O(m*m)，会超时
  */
 function strStr(haystack: string, needle: string): number {
   let i = 0;

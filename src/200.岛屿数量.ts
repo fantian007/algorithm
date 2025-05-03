@@ -28,7 +28,7 @@ function numIslands(grid: string[][]): number {
   // 遍历整个网格
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
-      // 如果当前单元格是陆地，则进行深度优先搜索并增加岛屿数量
+      // 当前单元格是陆地，才会执行
       if (grid[i][j] === '1') {
         count++;
         dfs(i, j);
@@ -47,3 +47,5 @@ const grid = [
 ];
 
 console.log(numIslands(grid));
+
+export { }

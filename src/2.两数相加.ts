@@ -11,36 +11,22 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
   // 进位
   let c = 0;
 
-  while (p1 && p2) {
-    const v = p1.val + p2.val + c;
+  while (p1 || p2) {
+    let v = c;
+
+    if (p1) {
+      v += p1.val;
+      p1 = p1.next;
+    }
+
+    if (p2) {
+      v += p2.val;
+      p2 = p2.next;
+    }
 
     c = v >= 10 ? 1 : 0;
     p3.next = new ListNode(v % 10);
 
-    p1 = p1.next;
-    p2 = p2.next;
-    p3 = p3.next;
-  }
-
-  // 检查 l1 是否遍历完毕
-  while (p1) {
-    const v = c + p1.val
-    p3.next = new ListNode(v % 10);
-
-    c = v >= 10 ? 1 : 0;
-
-    p1 = p1.next;
-    p3 = p3.next;
-  }
-
-  // 检查 l2 是否遍历完毕
-  while (p2) {
-    const v = c + p2.val
-    p3.next = new ListNode(v % 10);
-
-    c = v >= 10 ? 1 : 0;
-
-    p2 = p2.next;
     p3 = p3.next;
   }
 
