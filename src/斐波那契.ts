@@ -18,4 +18,6 @@ const fibnacciV2 = (a: number, b: number, n: number) => {
 }
 
 // 1,2,3,5,8,13 => 31
-console.log(fibnacciV2(6));
+// console.log(fibnacciV2(6));
+
+export {};
