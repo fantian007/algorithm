@@ -18,3 +18,5 @@ function removeDuplicates(nums: number[]): number {
 
   return slow + 1;
 };
+
+export {}

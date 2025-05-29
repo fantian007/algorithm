@@ -4,6 +4,7 @@ function addStrings(num1: string, num2: string): string {
   let c: number = 0;
   let r: string = '';
 
+  // 注意：三者是 或 关系
   while (i >= 0 || j >= 0 || c > 0) {
     let sum: number = c;
 
@@ -25,4 +26,4 @@ function addStrings(num1: string, num2: string): string {
   return r;
 }
 
-export {}
+export { }

@@ -3,6 +3,7 @@ function lengthOfLIS(nums) {
   // 备忘录，初始值设为 -1，表示尚未计算过
   const memo = new Array<number>(nums.length).fill(-1);
 
+  // 计算从 [index, 末尾] 子数组中最大递增子序列长度
   // 定义递归函数进行穷举计算
   function dp(index: number) {
     // 返回缓存
@@ -11,6 +12,7 @@ function lengthOfLIS(nums) {
     }
 
     // 初始化当前位置的最长递增子序列长度为1
+    // 也是递归的终止条件，如只剩最后一个数，递增子序列长度为 1
     let maxLen = 1;
 
     // 从当前位置往后遍历数组，穷举所有可能的子序列

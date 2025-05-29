@@ -12,6 +12,7 @@ function threeSum(nums: number[]): number[][] {
     }
 
     for (let i = start; i < nums.length; i++) {
+      // 去重（先排序）
       if (i > start && nums[i] === nums[i - 1]) continue;
 
       path.push(nums[i]);

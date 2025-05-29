@@ -22,7 +22,7 @@ function removeDuplicates(nums: number[]): number {
   return p1;
 };
 
-const r = removeDuplicates([1, 1, 2, 1, 2, 3]); // 2
+const r = removeDuplicates([1, 1, 2, 2, 3]); // 3
 console.log(r);
 
 export { }

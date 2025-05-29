@@ -2,14 +2,14 @@
 // 左边越小，差值会越大。左边只管往小了取，过程中不断更新最大差值。
 function maxProfit(prices: number[]): number {
   let min = Infinity;
-  let maxDiff = 0;
+  let r = 0;
 
-  for (let i = 0; i < prices.length; i++) {
-    min = Math.min(min, prices[i]);
-    maxDiff = Math.max(maxDiff, prices[i] - min);
+  for (const v of prices) {
+    min = Math.min(min, v);
+    r = Math.max(r, v - min);
   };
 
-  return maxDiff;
+  return r;
 }
 
 const r = maxProfit([7, 1, 5, 3, 6, 4]); // 5
