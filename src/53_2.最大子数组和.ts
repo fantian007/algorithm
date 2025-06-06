@@ -1,7 +1,7 @@
 function maxSubArray(nums: number[]): number {
   let r = nums[0];
 
-  // dp[i]： [0, i] 区间最大和
+  // dp[i]： 以 nums[i] 结尾的最大子数组和
   const dp: number[] = new Array(nums.length).fill(0);
 
   dp[0] = nums[0];

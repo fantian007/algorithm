@@ -3,7 +3,6 @@ function change(amount: number, coins: number[]): number {
   // dp[j]: 凑成总金额 j 的 硬币组合数
   const dp: number[] = new Array(amount + 1).fill(0);
 
-
   dp[0] = 1;
 
   for (let i = 0; i <= coins.length; i++) {

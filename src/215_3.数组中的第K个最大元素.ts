@@ -12,7 +12,7 @@
 function findKthLargest(nums: number[], k: number): number {
   const quickSort = (left: number, right: number) => {
     // 轴，固定不动，不参与交换
-    let pivot = right;
+    const pivot = right;
     // 交换位置
     let pos = left;
 
