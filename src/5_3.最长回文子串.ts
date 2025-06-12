@@ -24,7 +24,7 @@ function longestPalindrome(s: string): string {
 
     for (let i = 0; i < j; i++) {
       // 如果两侧字符相同，并且
-      // 1. j-i <= 2 代表 a, aa, aba 这种情况，一定是回文
+      // 1. j-i <= 2 代表 a, aa, aba 这种情况，一定是回文（这个判断一定要有）
       // 2. 除去两侧字符，dp[i+1][j-1] 中间部分是回文，那么整体是回文
       if (s[i] === s[j] && (j - i <= 2 || dp[i + 1][j - 1] === 1)) {
         dp[i][j] = 1;

@@ -5,16 +5,21 @@ function change(amount: number, coins: number[]): number {
 
   dp[0] = 1;
 
-  for (let i = 0; i <= coins.length; i++) {
-    for (let j = coins[i]; j <= amount; j++) {
-      dp[j] += dp[j - coins[i]];
+  for (const coin of coins) {
+    for (let j = coin; j <= amount; j++) {
+      // 1. 之前 dp[j] 的组合数
+      // 2. dp[j - coin] 的组合数（各自再加上1个当前 coin 就可以达到 j）
+      // 结果：2者组合数的和
+      dp[j] += dp[j - coin];
     }
   }
 
   return dp[amount];
 }
 
-const r = change(5, [1, 2, 5]);
+
+// const r = change(5, [1, 2, 5]);
+const r = change(1, [1]);
 console.log(r);
 
 export {};

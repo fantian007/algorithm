@@ -7,7 +7,7 @@ function longestPalindromeSubseq(s: string): number {
 
   /**
    * 自底向上，自左向右 遍历
-   * dp[i][j] 的值依赖于 dp[i+1][j-1], dp[i][j-1], dp[i+1][j]，dp 表格里面左下角、左、下 的值
+   * dp[i][j] 的值依赖于 dp[i+1][j-1], dp[i][j-1], dp[i+1][j]，dp 表格里面左下角、左、下 的值（决定遍历顺序）
    * 区间定义是 [i][j]，当 j < i，不是有效区间，初始化为 0
    * 当 i === j 时（dp 对角线），代表是单个字符，回文长度 = 1
    * 当 i > j 时，走递推公式
@@ -19,16 +19,14 @@ function longestPalindromeSubseq(s: string): number {
 
   // 从 dp 递推公式看，自底向上，自左向右 遍历
   for (let i = s.length - 1; i >= 0; i--) {
-    // 已经初始化 i===j 时，dp[i][j] = 1，所以 j 从 i + 1 开始
+    // 已经初始化 i===j 时，dp[i][j] = 1，所以 j 从 i + 1 开始'
     for (let j = i + 1; j < s.length; j++) {
       if (s[i] === s[j]) {
         dp[i][j] = dp[i + 1][j - 1] + 2; // i,j 处的 2 个字符
       } else {
         /**
-         * 不相等，说明 s[i], s[j] 不能同时加入字符串，先去除这2个字符，那么剩余就是 [i+1][j-1] 区间的字符串，最长回文子序列长度是 dp[i+1][j-1]，那么
-         * 1. 如果 s[i] 加入字符串，那么就是 dp[i][j-1]
-         * 2. 如果 s[j] 加入字符串，那么就是 dp[i+1][j]
-         * 取最大长度即可
+         * dp 本质就是遍历所有情况，如果 s[i] 不等于 s[j]，那么 dp[i][j] 就是 [i, j] 范围字符串除去其中一个端点的字符串的最大长度，也就是 [i, j) 或者 (i, j] 
+         * 除去两边的端点，有2种情况： dp[i+1][j], dp[i][j-1]
          */
         dp[i][j] = Math.max(dp[i][j - 1], dp[i + 1][j]);
       }
