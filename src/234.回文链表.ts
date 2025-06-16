@@ -1,21 +1,4 @@
-/*
- * @lc app=leetcode.cn id=234 lang=typescript
- *
- * [234] 回文链表
- */
-
-// @lc code=start
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     val: number
- *     next: ListNode | null
- *     constructor(val?: number, next?: ListNode | null) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.next = (next===undefined ? null : next)
- *     }
- * }
- */
+import { ListNode } from "./ListNode";
 
 function isPalindrome(head: ListNode | null): boolean {
   if (head === null || head.next === null) {
@@ -47,5 +30,5 @@ function isPalindrome(head: ListNode | null): boolean {
 
   return true;
 };
-// @lc code=end
 
+export { }

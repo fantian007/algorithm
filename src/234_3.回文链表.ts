@@ -1,21 +1,4 @@
-/*
- * @lc app=leetcode.cn id=234 lang=typescript
- *
- * [234] 回文链表
- */
-
-// @lc code=start
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     val: number
- *     next: ListNode | null
- *     constructor(val?: number, next?: ListNode | null) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.next = (next===undefined ? null : next)
- *     }
- * }
- */
+import { createLinkList, ListNode } from "./ListNode";
 
 // 反转链表
 const reverse = (head: ListNode) => {
@@ -34,6 +17,10 @@ const reverse = (head: ListNode) => {
   return pre;
 }
 
+
+/**
+ * 思路：快慢指针找到中点，反转后半部分链表，然后2部分链表再对比值
+ */
 function isPalindrome(head: ListNode | null): boolean {
   if (head === null || head.next === null) {
     return true;
@@ -50,6 +37,7 @@ function isPalindrome(head: ListNode | null): boolean {
     fast = fast.next.next;
   }
 
+  // 注意这句
   // 节点个数为奇数，slow 移动到下一个节点
   if (fast !== null) {
     slow = slow.next;
@@ -70,5 +58,11 @@ function isPalindrome(head: ListNode | null): boolean {
 
   return true;
 };
-// @lc code=end
 
+// const tree = createLinkList([0, 0]); true
+const tree = createLinkList([1, 0]); // false
+// const tree = createLinkList([1, 2, 3, 4, 5]); // false
+const r = isPalindrome(tree);
+console.log(r); // true
+
+export { }
